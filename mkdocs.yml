@@ -78,6 +78,7 @@ nav:
   - nearest_pair: posts/ALGO/nearest_pair.md
   - scanning_line: posts/ALGO/scanning_line.md
   - segment_tree: posts/ALGO/segment_tree.md
+  - NetworkFlow: posts/ALGO/NetworkFlow.md
 - CPP:
   - CPP: posts/CPP/index.md
   - CRTP: posts/CPP/CRTP.md
