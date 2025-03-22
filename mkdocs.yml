@@ -60,6 +60,7 @@ nav:
   - Zero Knowledge Proof: posts/Crypto/Zero Knowledge Proof.md
   - RSA: posts/Crypto/RSA.md
   - Further_Read: posts/Crypto/Further_Read.md
+  - Certificate_and_Sign: posts/Crypto/Certificate_and_Sign.md
 - ALGO:
   - ALGO: posts/ALGO/index.md
   - MST_survey: posts/ALGO/MST_survey.md
@@ -74,6 +75,9 @@ nav:
       - cf1672H: posts/ALGO/Competitive_Contest/CF/cf1672H.md
   - RandomizedIncrementalAlgo: posts/ALGO/RandomizedIncrementalAlgo.md
   - Dilworth: posts/ALGO/Dilworth.md
+  - nearest_pair: posts/ALGO/nearest_pair.md
+  - scanning_line: posts/ALGO/scanning_line.md
+  - segment_tree: posts/ALGO/segment_tree.md
 - CPP:
   - CPP: posts/CPP/index.md
   - CRTP: posts/CPP/CRTP.md
@@ -93,16 +97,20 @@ nav:
     - Burnside's_Lemma: posts/MATH/Combinatorial_Maths/Burnside's_Lemma.md
   - Linear_Algebra:
     - Chpater 3: posts/MATH/Linear_Algebra/Chpater 3.md
+    - theorems: posts/MATH/Linear_Algebra/theorems.md
   - AMC: posts/MATH/AMC.md
   - AdvancedFormalLanguageTheory: posts/MATH/AdvancedFormalLanguageTheory.md
   - TDA: posts/MATH/TDA.md
   - AbstractAlgebra: posts/MATH/AbstractAlgebra.md
   - Complexity:
     - Ladner Theorem: posts/MATH/Complexity/Ladner Theorem.md
+  - LP: posts/MATH/LP.md
+  - GCA: posts/MATH/GCA.md
 - MISC:
   - working_setting: posts/MISC/working_setting.md
   - latex_tips: posts/MISC/latex_tips.md
   - eride_worktips: posts/MISC/eride_worktips.md
+  - WindowsSettings: posts/MISC/WindowsSettings.md
 - About:
   - About: posts/About/index.md
   - Bachelor Courses Description: posts/About/Bachelor Courses Description.md

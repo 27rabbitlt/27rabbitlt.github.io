@@ -14,7 +14,7 @@ def get_mdfiles(position):
     
 # get directories under this position, postition has to be a Path
 # ignore some names
-dir_ignore = ["assets"]
+dir_ignore = ["assets", "asset", "pics"]
 def get_dirs(position):
     return [item.name for item in position.iterdir() if item.is_dir() and item.name not in dir_ignore]
 
