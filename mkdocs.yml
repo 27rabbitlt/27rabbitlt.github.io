@@ -107,6 +107,7 @@ nav:
     - Ladner Theorem: posts/MATH/Complexity/Ladner Theorem.md
   - LP: posts/MATH/LP.md
   - GCA: posts/MATH/GCA.md
+  - Complex_Analysis: posts/MATH/Complex_Analysis.md
 - MISC:
   - working_setting: posts/MISC/working_setting.md
   - latex_tips: posts/MISC/latex_tips.md
@@ -116,6 +117,12 @@ nav:
   - About: posts/About/index.md
   - Bachelor Courses Description: posts/About/Bachelor Courses Description.md
   - Master Courses: posts/About/Master Courses.md
+- NLP:
+  - LM-LSS: posts/NLP/LM-LSS.md
+- tournaments_hamiltonicity:
+  - sudakov-robust-dirac-graph: posts/tournaments_hamiltonicity/sudakov-robust-dirac-graph.md
+- RSS_or_Sources:
+  - sources: posts/RSS_or_Sources/sources.md
 plugins:
 - search
 repo_name: 27rabbitlt pages
