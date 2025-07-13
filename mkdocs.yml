@@ -108,11 +108,14 @@ nav:
   - LP: posts/MATH/LP.md
   - GCA: posts/MATH/GCA.md
   - Complex_Analysis: posts/MATH/Complex_Analysis.md
+  - ODE:
+    - eigenvalue: posts/MATH/ODE/eigenvalue.md
 - MISC:
   - working_setting: posts/MISC/working_setting.md
   - latex_tips: posts/MISC/latex_tips.md
   - eride_worktips: posts/MISC/eride_worktips.md
   - WindowsSettings: posts/MISC/WindowsSettings.md
+  - books: posts/MISC/books.md
 - About:
   - About: posts/About/index.md
   - Bachelor Courses Description: posts/About/Bachelor Courses Description.md
