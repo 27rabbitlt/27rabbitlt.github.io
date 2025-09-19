@@ -1,0 +1,1 @@
+Code doc for numexpr for myself since I will periodically forget everything.
