@@ -126,6 +126,11 @@ nav:
   - sudakov-robust-dirac-graph: posts/tournaments_hamiltonicity/sudakov-robust-dirac-graph.md
 - RSS_or_Sources:
   - sources: posts/RSS_or_Sources/sources.md
+- numexpr:
+  - numexpr: posts/numexpr/index.md
+  - refcount: posts/numexpr/refcount.md
+- pciedriver:
+  - init: posts/pciedriver/init.md
 plugins:
 - search
 repo_name: 27rabbitlt pages
