@@ -1,0 +1,3586 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://27rabbitlt.github.io/posts/ALGO/MST_survey/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../Competitive_Contest/KMP/">
+      
+      
+      <link rel="icon" href="../../../asset/black_circle_rabbit.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>MST_survey - RABBIT HOLE</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../from_oi_wiki/css/extra.css?v=13">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mst-naive-survey" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="RABBIT HOLE" class="md-header__button md-logo" aria-label="RABBIT HOLE" data-md-component="logo">
+      
+  <img src="../../../asset/black_circle_rabbit.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RABBIT HOLE
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MST_survey
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/27rabbitlt/27rabbitlt.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    27rabbitlt pages
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../.." class="md-tabs__link">
+          
+  
+  
+  RABBIT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Crypto/" class="md-tabs__link">
+          
+  
+  
+  Crypto
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  ALGO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../CPP/" class="md-tabs__link">
+          
+  
+  
+  CPP
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../MATH/" class="md-tabs__link">
+          
+  
+  
+  MATH
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../MISC/working_setting/" class="md-tabs__link">
+          
+  
+  
+  MISC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../About/" class="md-tabs__link">
+          
+  
+  
+  About
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../NLP/LM-LSS/" class="md-tabs__link">
+          
+  
+  
+  NLP
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tournaments_hamiltonicity/sudakov-robust-dirac-graph/" class="md-tabs__link">
+          
+  
+  
+  tournaments_hamiltonicity
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../RSS_or_Sources/sources/" class="md-tabs__link">
+          
+  
+  
+  RSS_or_Sources
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../numexpr/" class="md-tabs__link">
+          
+  
+  
+  numexpr
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../pciedriver/init/" class="md-tabs__link">
+          
+  
+  
+  pciedriver
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../formal-language/chap1/" class="md-tabs__link">
+          
+  
+  
+  formal-language
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="RABBIT HOLE" class="md-nav__button md-logo" aria-label="RABBIT HOLE" data-md-component="logo">
+      
+  <img src="../../../asset/black_circle_rabbit.png" alt="logo">
+
+    </a>
+    RABBIT HOLE
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/27rabbitlt/27rabbitlt.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    27rabbitlt pages
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    RABBIT
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            RABBIT
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ME
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Crypto
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Crypto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Crypto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Crypto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Crypto/Zero%20Knowledge%20Proof/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Zero Knowledge Proof
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Crypto/RSA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RSA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Crypto/Further_Read/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Further_Read
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Crypto/Certificate_and_Sign/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Certificate_and_Sign
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    ALGO
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            ALGO
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ALGO
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    MST_survey
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    MST_survey
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-abstract" class="md-nav__link">
+    <span class="md-ellipsis">
+      0 Abstract
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-basic-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Basic Principle
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-details-of-classical-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Details of Classical Algorithm
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Details of Classical Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-sollins-boruvkas-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Sollin's (Boruvka's) Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-prim-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Prim Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-kruskal-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Kruskal Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-not-that-well-known-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Not That Well-Known Algorithm
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Not That Well-Known Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-yao-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Yao Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-cheriton-tarjan-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Cheriton-Tarjan Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-randomized-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Randomized Algorithm
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Randomized Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-tarjans-expected-linear-time-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Tarjan's Expected Linear Time Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-parallel-algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 Parallel Algorithms
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 Parallel Algorithms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-prim-parallel-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Prim Parallel Version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-kruskal-parallel-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Kruskal Parallel Version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-sollin-parallel-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Sollin Parallel Version
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-other-applicatioins-and-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 Other Applicatioins and Properties
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      8 Reference
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Competitive_Contest
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Competitive_Contest
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Competitive_Contest/KMP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    KMP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Competitive_Contest/Minimize_The_Number_of_Swaps_to_Sort_List/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Minimize_The_Number_of_Swaps_to_Sort_List
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Competitive_Contest/Sieve%20of%20Euler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sieve of Euler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Competitive_Contest/Strongly%20Connected%20Component/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Strongly Connected Component
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Competitive_Contest/DSU_On_Tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DSU_On_Tree
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_6" id="__nav_3_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    CF
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            CF
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Competitive_Contest/CF/cf1672H/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    cf1672H
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RandomizedIncrementalAlgo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RandomizedIncrementalAlgo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dilworth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dilworth
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nearest_pair/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    nearest_pair
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scanning_line/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    scanning_line
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../segment_tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    segment_tree
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../NetworkFlow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    NetworkFlow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    CPP
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            CPP
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CPP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CPP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CPP/CRTP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CRTP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CPP/Further%20Read/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Further Read
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UB
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            UB
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CPP/UB/infinite_loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    infinite_loop
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CPP/Concurrency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Concurrency
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CPP/memory_order/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    memory_order
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    MATH
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            MATH
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MATH
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/FFT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FFT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/Interesting%20Puzzle%20or%20Paper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Interesting Puzzle or Paper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    MISCS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            MISCS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/MISCS/Continuous%2C%20all%20direction%20derivative%20exist%20but%20not%20differentiable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Continuous, all direction derivative exist but not differentiable
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Combinatorial_Maths
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            Combinatorial_Maths
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/Combinatorial_Maths/Burnside%27s_Lemma/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Burnside's_Lemma
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Linear_Algebra
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            Linear_Algebra
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/Linear_Algebra/Chpater%203/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chpater 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/Linear_Algebra/theorems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    theorems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/AMC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AMC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/AdvancedFormalLanguageTheory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AdvancedFormalLanguageTheory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/TDA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    TDA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/AbstractAlgebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AbstractAlgebra
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_11" id="__nav_5_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Complexity
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_11">
+            <span class="md-nav__icon md-icon"></span>
+            Complexity
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/Complexity/Ladner%20Theorem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ladner Theorem
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/LP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/GCA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GCA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/Complex_Analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Complex_Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_15" id="__nav_5_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ODE
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_15">
+            <span class="md-nav__icon md-icon"></span>
+            ODE
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/ODE/eigenvalue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    eigenvalue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    MISC
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            MISC
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MISC/working_setting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    working_setting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MISC/latex_tips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    latex_tips
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MISC/eride_worktips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    eride_worktips
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MISC/WindowsSettings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    WindowsSettings
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MISC/books/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    books
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            About
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../About/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../About/Bachelor%20Courses%20Description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bachelor Courses Description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../About/Master%20Courses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Master Courses
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    NLP
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            NLP
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../NLP/LM-LSS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LM-LSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    tournaments_hamiltonicity
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            tournaments_hamiltonicity
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tournaments_hamiltonicity/sudakov-robust-dirac-graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    sudakov-robust-dirac-graph
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    RSS_or_Sources
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            RSS_or_Sources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RSS_or_Sources/sources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    sources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    numexpr
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            numexpr
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../numexpr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    numexpr
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../numexpr/refcount/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    refcount
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    pciedriver
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            pciedriver
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pciedriver/init/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    init
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    formal-language
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            formal-language
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../formal-language/chap1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    chap1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../formal-language/chap2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    chap2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-abstract" class="md-nav__link">
+    <span class="md-ellipsis">
+      0 Abstract
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-basic-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Basic Principle
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-details-of-classical-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Details of Classical Algorithm
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Details of Classical Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-sollins-boruvkas-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Sollin's (Boruvka's) Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-prim-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Prim Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-kruskal-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Kruskal Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-not-that-well-known-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Not That Well-Known Algorithm
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Not That Well-Known Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-yao-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Yao Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-cheriton-tarjan-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Cheriton-Tarjan Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-randomized-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Randomized Algorithm
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Randomized Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-tarjans-expected-linear-time-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Tarjan's Expected Linear Time Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-parallel-algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 Parallel Algorithms
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 Parallel Algorithms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-prim-parallel-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Prim Parallel Version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-kruskal-parallel-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Kruskal Parallel Version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-sollin-parallel-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Sollin Parallel Version
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-other-applicatioins-and-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 Other Applicatioins and Properties
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      8 Reference
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="mst-naive-survey">MST Naive Survey<a class="headerlink" href="#mst-naive-survey" title="Permanent link">&para;</a></h1>
+<h3 id="0-abstract">0 Abstract<a class="headerlink" href="#0-abstract" title="Permanent link">&para;</a></h3>
+<p>This is a very simple and naive survey on M(Minimum) S(Spanning) T(Tree) problem. This problem is a widely researched and extremely important combinatorial problem, which has significant influences on all kinds of fields such as computer architecture allocation, transportation, express logistics, to name but a few. </p>
+<p>Also, a MST can also provide bounds (lower bound and 2-approximation upper bound if given triangle inequality) for Travelling Salesman Problem. Here I will introduce some classical algorithms and several modern and asymptotically better algorithms as well as parallel algorithms.</p>
+<h3 id="1-introduction">1 Introduction<a class="headerlink" href="#1-introduction" title="Permanent link">&para;</a></h3>
+<p>In a network composed of nodes and arcs with costs, a <strong>spanning tree</strong> is a acyclic subgraph connecting all the nodes together. A <strong>minimum spanning tree</strong> is the spanning tree with minimum cost on the network. That is it is the spanning tree with the least sum of the costs of all the edges. </p>
+<p>Finding the minimum spanning tree is useful in several different applications. Perhaps the most direct application is designing physical systems like road system. For example, consider isolated villages that need to be connected with roads. We need to ensure that each village has at least one way to go to any other villages. Obviously, we also want the total construction cost to be minimum, and this forms a MST problem. </p>
+<p>We can easily come up with other ideas and situations needing the aid of MST.<br />
+Another application of the minimum spanning tree problem is cluster analysis. Suppose that we have a network and want to split the network into <span class="arithmatex">\(k\)</span> different clusters such that the total cost of all the clusters is minimized. We can take the minimum spanning tree and delete the <span class="arithmatex">\(k-1\)</span> arcs with the highest cost. The result is a forest of <span class="arithmatex">\(k\)</span> trees with minimal cost. </p>
+<p>We can see that the above two examples respectively correspond to adding edges and deleting edges. We will then show that both adding and deleting edges are important with respect to MST problem. They are important in finding a MST and using MST to solve a practical problem.</p>
+<h3 id="2-basic-principle">2 Basic Principle<a class="headerlink" href="#2-basic-principle" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>[!Definition]<br />
+<strong>Fundamental Cutset</strong><br />
+For a graph  <span class="arithmatex">\(G\)</span>  two distinct vertices say  <span class="arithmatex">\(i\)</span>  and  <span class="arithmatex">\(j\)</span> , let  <span class="arithmatex">\(X\)</span> be any subset of vertices that contains <span class="arithmatex">\(i\)</span> but not  <span class="arithmatex">\(j\)</span> and let  <span class="arithmatex">\(\bar{X}\)</span> be its complement, then set  <span class="arithmatex">\(X\)</span> is a  <span class="arithmatex">\(cut\)</span> and the set of edges  <span class="arithmatex">\((i,j), i\in X,j\in \bar{X}, (i,j)\in E\)</span> is called a   <span class="arithmatex">\(cutset\)</span> . <br />
+The removal of the arcs in a   <span class="arithmatex">\(cutset\)</span> leaves a disconnected subgraph of  <span class="arithmatex">\(G\)</span> . Corresponding to each edge  <span class="arithmatex">\(e\)</span> of a spanning tree  <span class="arithmatex">\(T\)</span> of a connected graph  <span class="arithmatex">\(G\)</span> , there is a unique cutset called the <code>fundamental cutset</code> of the tree  <span class="arithmatex">\(T\)</span> with respect to edge  <span class="arithmatex">\(e\)</span> .</p>
+</blockquote>
+<p>We will then show that this definition has much to do with adding edges.</p>
+<blockquote>
+<p>[!Definition]<br />
+<strong>Fundamental Circle</strong><br />
+Given a graph  <span class="arithmatex">\(G\)</span> , a spanning tree  <span class="arithmatex">\(T\)</span> and a co-tree edge   <span class="arithmatex">\(e=(i, j)\in E - T\)</span> , the unique cycle in  <span class="arithmatex">\(G\)</span>  consisting of the edge  <span class="arithmatex">\(e\)</span> and the edges of the unique chain in  <span class="arithmatex">\(T\)</span> between  <span class="arithmatex">\(i\)</span> and  <span class="arithmatex">\(j\)</span> is called  a <code>fundamental cycle</code> of  <span class="arithmatex">\(G\)</span> relative to  <span class="arithmatex">\(T\)</span> with respect to  <span class="arithmatex">\(e\)</span> .</p>
+</blockquote>
+<p>We will then show that this definition has much to do with deleting edges.</p>
+<blockquote>
+<p>[!Theorem]<br />
+<strong>Fundamental Cut Optimality</strong><br />
+A spanning tree  <span class="arithmatex">\(T\)</span> in a weighted graph is a MST if and only if every edge in the tree is a minimum weight edge in the<code>fundamental cutset</code>defined by that edge.  </p>
+</blockquote>
+<p><strong>Proof</strong>:</p>
+<p>the weight of edge  <span class="arithmatex">\((i,j)\)</span> is noted as  <span class="arithmatex">\(c_{ij}\)</span> .</p>
+<p><strong>1' MST==&gt;Cut Opt</strong>: This can be proved by contradiction. Suppose  <span class="arithmatex">\(T^*\)</span> is a minimum spanning tree violating <strong>Cut Opt</strong>, then there are two edges   <span class="arithmatex">\(c_{ij}\in T\)</span> and  <span class="arithmatex">\(c_{kl}\in cut_{ij}\)</span>  such that  <span class="arithmatex">\(c_{ij}&gt;c_{kl}\)</span> . Then replacing   <span class="arithmatex">\(c_{ik}\)</span> with  <span class="arithmatex">\(c_{kl}\)</span> would yield a lower cost spanning tree.</p>
+<p>2' <strong>Cut Opt==&gt;MST</strong>: Contradiction again. Suppose  <span class="arithmatex">\(T^∗\)</span> satisfies the cut optimality conditions, but  <span class="arithmatex">\(T^∗\)</span> is not a minimum spanning tree. That is, there exists a tree  <span class="arithmatex">\(T^′≠T^∗\)</span> that is a minimum spanning tree. Then, since  <span class="arithmatex">\(T^∗\)</span> is not a minimum spanning tree, it must have an edge  <span class="arithmatex">\((i,j)\)</span> not contained in  <span class="arithmatex">\(T^′\)</span> . Deleting edge  <span class="arithmatex">\((i,j)\)</span> from  <span class="arithmatex">\(T^∗\)</span>  creates a cut  <span class="arithmatex">\([S,\bar{S}]\)</span> . Adding one edge to a tree will form and only form one circle. Assume we add  <span class="arithmatex">\((i,j)\)</span> to   <span class="arithmatex">\(T'\)</span> then we will get a circle  <span class="arithmatex">\(C\)</span> . Since  <span class="arithmatex">\(i\in S, j\in \bar{S}\)</span> , there must be an edge  <span class="arithmatex">\((k,l)\)</span> in circle  <span class="arithmatex">\(C\)</span> such that  <span class="arithmatex">\(k\in S, l\in \bar{S}\)</span> . According to <strong>Cut Opt</strong> we know that  <span class="arithmatex">\(c_{ij}\leq c_{kl}\)</span>  , and also we have  <span class="arithmatex">\(c_{kl}\leq c_{ij}\)</span> because  <span class="arithmatex">\(T'\)</span> is a MST, which means that if  <span class="arithmatex">\(c_{ij}&lt;c_{kl}\)</span> then we can replace  <span class="arithmatex">\((k,l)\)</span> with  <span class="arithmatex">\((i,j)\)</span> yielding a less cost tree. Having the both inequalities, we know that  <span class="arithmatex">\(c_{ij}=c_{kl}\)</span> . Then we just replace  <span class="arithmatex">\((k,l)\)</span> freely with  <span class="arithmatex">\((i,j)\)</span> making a new MST (the total cost doesn't change, so it's still a MST) . Following this process, we can gradually change  <span class="arithmatex">\(T'\)</span> into  <span class="arithmatex">\(T^*\)</span> , which means that  <span class="arithmatex">\(T^*\)</span> is already a MST. </p>
+<blockquote>
+<p><strong>[Theorem 2]</strong> <strong>Fundamental Circle Optimality</strong><br />
+A spanning tree  <span class="arithmatex">\(T\)</span> in a graph  <span class="arithmatex">\(G\)</span> is a MST if and only if every edge  <span class="arithmatex">\(e\in E-T\)</span> is a maximum weight edge in the unique<code>fundamental cycle</code>defined by that edge.</p>
+</blockquote>
+<p><strong>Proof</strong>:</p>
+<p><strong>1' MST==&gt;Circle Opt</strong>: This can also be proved by contradiction. Assume that there exists a MST  <span class="arithmatex">\(T^*\)</span> violating Fundamental Circle Optimality, which means that there is an edge  <span class="arithmatex">\(e\in E-T\)</span> weighing less than one edge  <span class="arithmatex">\(e'\)</span> in the <code>fundamental cycle</code>defined by  <span class="arithmatex">\(e\)</span> . Then we could delete edge  <span class="arithmatex">\(e'\)</span> and add edge  <span class="arithmatex">\(e\)</span> , then we can get a new tree  <span class="arithmatex">\(T'\)</span> with less cost. This conflictst with the assumption that  <span class="arithmatex">\(T^*\)</span> is a MST.</p>
+<p><strong>2' Circle Opt==&gt;MST</strong>: This can be proved with the help of <strong>Theorem 1</strong>. It's obvious that if a tree doesn't hold <strong>Cut Opt</strong>, then it will not hold <strong>Circle Opt</strong> either. So we know that: <strong>Circle Opt==&gt;Cut Opt</strong>. Then we have: <strong>Circle Opt==&gt;Cut Opt==&gt;MST</strong> using <strong>Theorem 1</strong>.<br />
+This is my personal proof, and here is an another much more elegant proof in <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
+<blockquote>
+<p><strong>Blue Rule</strong>:<br />
+Select a cutset that does not contain a blue edge. Among the uncoloured edges in the cutset, select one of minimum weight and colour it blue.</p>
+<p><strong>Red Rule</strong>:<br />
+Select a simple cycle containing no red edges. Among the uncoloured edges on the cycle, select one of maximum weight and colour it red.  </p>
+</blockquote>
+<p>These two rules are proposed in Tarjan's book<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">2</a></sup>, and elaborately illustrated by tutorial slides<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">3</a></sup>. Since we already proved these two optimality conditions, these two rules can be immediately derived.</p>
+<p>Both red rules and blue rules can be used for the construction of MST, but in practice, we usually use blue rule. The most well known algorithms including Prim, Kruskal and Sollin's algorithm are all using blue rule.</p>
+<h3 id="3-details-of-classical-algorithm">3 Details of Classical Algorithm<a class="headerlink" href="#3-details-of-classical-algorithm" title="Permanent link">&para;</a></h3>
+<h4 id="31-sollins-boruvkas-algorithm">3.1 Sollin's (Boruvka's) Algorithm<a class="headerlink" href="#31-sollins-boruvkas-algorithm" title="Permanent link">&para;</a></h4>
+<p>More commonly known as Boruvka's algorithm, Sollin's algorithm was the first algorithm for the minimum spanning tree problem. Borukva first published his algorithm in 1926 which he designed as a way of constructing an efficient electricity network in Moravia, a region of the Czech Republic. He published two papers in the same year with this algorithm. One was 22 pages and has been viewed as unnecessarily complicated. The other was a one page paper that has been regarded as the key paper showing Boruvka's understanding and knowledge of the problem.</p>
+<p>It was then independently rediscovered in 1938 by French mathematician Gustave Choquet, and finally rediscovered in 1962 by Georges Sollin. </p>
+<p>We have introduced this algorithm in our lectures, so here I will not elaborately illustrate it. Each time we choose an edge with lowest cost from all edges incident to a component. We then add these edges into the graph and form a new graph with less components. It's obvious that this algorithm is using blue rules to add edges.</p>
+<p>The time complexity is  <span class="arithmatex">\(O(e\log n)\)</span> .</p>
+<h4 id="32-prim-algorithm">3.2 Prim Algorithm<a class="headerlink" href="#32-prim-algorithm" title="Permanent link">&para;</a></h4>
+<p>This algorithm is so classical that almost everyone will be taught with this algo when learning MST for the first time. It use an arbitrary starting vertex  <span class="arithmatex">\(s\)</span> and apply the color step  <span class="arithmatex">\(n-1\)</span> times. The color step is that: Let  <span class="arithmatex">\(T\)</span> be the blue tree containing the vertex  <span class="arithmatex">\(s\)</span> . </p>
+<p>Select a minimum weight edge incident to  <span class="arithmatex">\(T\)</span> and colour it blue.   </p>
+<p>There are many ways to implement Prim algorithm, with different time complexity. The difference lies in the way we select the minimum-weight edge. If we simply go through all the edges, then the time complexity would be  <span class="arithmatex">\(O(n^2)\)</span> . If we use binary heap and adjacent list, the time complexity would be  <span class="arithmatex">\(O(e\log n)\)</span> . If we use Fibonacci heap, the time complexity would be  <span class="arithmatex">\(O(e+n\log n)\)</span> . If we use d-heap, which is a general case of binary heap and an implementation of priority queue, the time complexity would be  <span class="arithmatex">\(O(nd\log_dn+m\log_dn)\)</span> . If we properly choose  <span class="arithmatex">\(d\)</span> , we can always get a satisfying algorithm for both dense graph and sparse graph (if dense, use a large d; if sparse, use a small d).</p>
+<h4 id="33-kruskal-algorithm">3.3 Kruskal Algorithm<a class="headerlink" href="#33-kruskal-algorithm" title="Permanent link">&para;</a></h4>
+<p>This algorithm is easy to implement and very suitable for competitive programming contests, so many competitors are very familiar with this algorithm. And its algorithm process can be a proof to many properties. The time complexity is  <span class="arithmatex">\(O(e\log e)=O(e\log n)\)</span> . This algorithm is also using blue rule, each time picking up the minimum-weight edge. If the edges are already sorted for us, then the time complexity could be  <span class="arithmatex">\(O(e\alpha (e,n))\)</span> , where  <span class="arithmatex">\(\alpha(a,b)\)</span> is the inverse Ackermann's function. This is because we are using union-and-find. </p>
+<p>To be honest, I didn't understand the proof of the time complextiy of union-and-find, here I'm just using the result provided by Wikipedia.</p>
+<h3 id="4-not-that-well-known-algorithm">4 Not That Well-Known Algorithm<a class="headerlink" href="#4-not-that-well-known-algorithm" title="Permanent link">&para;</a></h3>
+<p>We learned two not that well-known algorithms in this class: Yao algorithm and Cheriton-Tarjan algorithm. They are adapted from Sollin's algorithm, using smarter way to select the minimum-weight edge. </p>
+<h4 id="41-yao-algorithm">4.1 Yao Algorithm<a class="headerlink" href="#41-yao-algorithm" title="Permanent link">&para;</a></h4>
+<p>This is an algorithm proposed by Qizhi Yao. It is on the basis of another algorithm finding the median with deterministic linear time<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">4</a></sup>. Assume that we already know how to find the median in linear time, then we can refine Sollin's algorithm by grouping edges. In Sollin's, we need to go through every edge to find the one with minimum weight. However, we know that some edges with large weight should not be considered in the early stages.</p>
+<p>Consider dividing all the edges into  <span class="arithmatex">\(k\)</span> groups, then we each time only need to go through the edges within the group. Then the time complexity is  <span class="arithmatex">\(O(dividing+\frac{n}{k}\log n)\)</span> . Then what is the time complexity of dividing edges into  <span class="arithmatex">\(k\)</span> groups such that edges in  <span class="arithmatex">\(i+1\)</span>th group have larger weight than these in  <span class="arithmatex">\(i\)</span>th group? We each time find the median and divide the set into two parts, and then recurssively go down in these two smaller subset. It's obvious that the dividing time is  <span class="arithmatex">\(O(n\log k)\)</span> .  Then using simple calculus knowledge we can that when  <span class="arithmatex">\(k=\log n\)</span> the formula  <span class="arithmatex">\(O(n\log k+\frac{n}{k}\log n)\)</span> gets its minimum:  <span class="arithmatex">\(O(n\log \log k)\)</span> .</p>
+<h4 id="42-cheriton-tarjan-algorithm">4.2 Cheriton-Tarjan Algorithm<a class="headerlink" href="#42-cheriton-tarjan-algorithm" title="Permanent link">&para;</a></h4>
+<p>The full algorithm<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup> is very complex, here is the key point: A heap is kept for each blue tree. Each heap holds the edges with at least one endpoint in the tree and which are candidates for becoming blue. Similar to Kruskal's algorithm, it grows a spanning forest, beginning with a forest of   <span class="arithmatex">\(n\)</span> components each consisting of a single node. Since, every component    <span class="arithmatex">\(T_u\)</span> must eventually be connected to another component, this algorithm keeps a separate heap   <span class="arithmatex">\(PQ_u\)</span> for each component   <span class="arithmatex">\(T_u\)</span> , so, that initially   <span class="arithmatex">\(n\)</span> smaller heaps are used. Initially,   <span class="arithmatex">\(PQ_u\)</span> will contain only   <span class="arithmatex">\(DEG(u)\)</span> edges, since   <span class="arithmatex">\(T_u\)</span> consists only of vertex   <span class="arithmatex">\(u\)</span> . When   <span class="arithmatex">\(T_u\)</span> and   <span class="arithmatex">\(T_v\)</span>  are merged,   <span class="arithmatex">\(PQ_u\)</span> and   <span class="arithmatex">\(PQ_v\)</span> must also be merged. This requires a modification of the data structures, since heaps cannot be merged efficiently. This is essentially because merging heaps reduces to building a new heap. It's difficult to work out the precise time complexity, I still need some time to understand the original paper. Here I just use the result provided by the paper, that the time complexity is   <span class="arithmatex">\(O(e\log \log n)\)</span> .</p>
+<p>In Cheriton and Tarjan's paper, they also proposed an algorithm for planar graph with time complexity   <span class="arithmatex">\(O(n)\)</span> , and an algorithm for sparse graph with time complexity   <span class="arithmatex">\(O(e)\)</span> . </p>
+<h3 id="5-randomized-algorithm">5 Randomized Algorithm<a class="headerlink" href="#5-randomized-algorithm" title="Permanent link">&para;</a></h3>
+<h4 id="51-tarjans-expected-linear-time-algorithm">5.1 Tarjan's Expected Linear Time Algorithm<a class="headerlink" href="#51-tarjans-expected-linear-time-algorithm" title="Permanent link">&para;</a></h4>
+<p>It was developed by David Karger, Philip Klein, and Robert Tarjan. So it is also known as Karger's algorithm. The algorithm relies on techniques from Boruvka's algorithm along with an algorithm for verifying a minimum spanning tree in linear time. It combines the design paradigms of divide and conquer algorithms, greedy algorithms, and randomized algorithms to achieve expected linear performance.<br />
+The key insight to the algorithm is a random sampling step which partitions a graph into two subgraphs by randomly selecting edges to include in each subgraph. The algorithm recursively finds the minimum spanning forest of the first subproblem and uses the solution in conjunction with a linear time verification algorithm to discard edges in the graph that cannot be in the minimum spanning tree. A procedure taken from Borůvka's algorithm is also used to reduce the size of the graph at each recursion. </p>
+<p>In more details, there are three steps in total: Boruvka step, random sampling step, and verification step.</p>
+<ul>
+<li>Boruvka Step: Given a graph  <span class="arithmatex">\(G\)</span> , apply the Boruvka algorithm to carry out one coloring step only. And then contract the graph  <span class="arithmatex">\(G\)</span> and get  <span class="arithmatex">\(G'\)</span> .</li>
+<li>Random sampling step: Given a contracted graph  <span class="arithmatex">\(G\)</span> , choose a subgraph  <span class="arithmatex">\(H\)</span> by selecting each edge</li>
+</ul>
+<p>in  <span class="arithmatex">\(G\)</span> independently with a probability   <span class="arithmatex">\(1/2\)</span> .</p>
+<ul>
+<li>Verification step: Given any minimum spanning forest  <span class="arithmatex">\(F\)</span> of  <span class="arithmatex">\(H\)</span> , find the   <span class="arithmatex">\(F_{heavy}\)</span>  edges and delete them from  <span class="arithmatex">\(G\)</span> to reduce the graph further. Here   <span class="arithmatex">\(F_{heavy}\)</span>  means that the weight of an edge   <span class="arithmatex">\(w(u,v)\)</span>  is larger than the weight of the path from   <span class="arithmatex">\(u\)</span>  to   <span class="arithmatex">\(v\)</span>  in a forest   <span class="arithmatex">\(F\)</span> . It's obvious that all the  <span class="arithmatex">\(F_{heavy}\)</span> edges will not appear in the final MST, so we can delete them.</li>
+</ul>
+<p>The complete algorithm process is shown below:</p>
+<ol>
+<li>Given   <span class="arithmatex">\(G(V, E)\)</span> , apply two successive Boruvka steps to the graph to contract  <span class="arithmatex">\(G\)</span> .</li>
+<li>Apply the random sampling step to the contracted graph to select  <span class="arithmatex">\(H\)</span> .</li>
+<li>Apply the algorithm recursively producing a minimum spanning forest  <span class="arithmatex">\(F\)</span> of the   <span class="arithmatex">\(H\)</span>  formed in step 1</li>
+<li>Given   <span class="arithmatex">\(F\)</span>  of   <span class="arithmatex">\(H\)</span> , apply the verification step to the subgraph  <span class="arithmatex">\(H\)</span> , which was chosen, and obtain</li>
+</ol>
+<p>a graph  <span class="arithmatex">\(G\)</span> which is reduced further.</p>
+<ol>
+<li>Apply the algorithm recursively to  <span class="arithmatex">\(G\)</span> to compute the minimum spanning forest  <span class="arithmatex">\(F\)</span> of  <span class="arithmatex">\(G\)</span> .</li>
+<li>Return those edges contracted in step 1 together with the edges of  <span class="arithmatex">\(F\)</span> .</li>
+</ol>
+<p>The time complexity relies on two properties:</p>
+<blockquote>
+<p><strong>Property 1</strong><br />
+Let  <span class="arithmatex">\(H\)</span> be a subgraph obtained from  <span class="arithmatex">\(G\)</span> by including each edge independently with probability  <span class="arithmatex">\(p\)</span> , and let  <span class="arithmatex">\(F\)</span> be the minimum spanning forest of  <span class="arithmatex">\(H\)</span> . The expected number of  <span class="arithmatex">\(F\)</span> edges in  <span class="arithmatex">\(G\)</span> is at mos  <span class="arithmatex">\(n/p\)</span> where  <span class="arithmatex">\(n\)</span> is the number of vertices.</p>
+<p><strong>Property 2</strong><br />
+We can do the verification step in deterministic linear time with the algorithm<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">6</a></sup> proposed by V. King.</p>
+</blockquote>
+<p>Both properties need further research and more time, I will get it through soon.<br />
+The expected running time is  <span class="arithmatex">\(O(m)\)</span> and it runs in   <span class="arithmatex">\(O(m)\)</span>  time with probability   <span class="arithmatex">\(1-exp(-\Omega (m))\)</span> .<br />
+In the worst case, it will be equivalent to Boruvka's algorithm, so the worst time complexity is   <span class="arithmatex">\(O(e\log n)\)</span> .</p>
+<h3 id="6-parallel-algorithms">6 Parallel Algorithms<a class="headerlink" href="#6-parallel-algorithms" title="Permanent link">&para;</a></h3>
+<p>The performance comparison of these sequencial algorithms is basically of no use, because in reality, we will never use one processer to handle a large-scale problem. And this is also the reason why parallel algorithms are getting more and more popular. All the classical algorithms illustrated above can be adapted into parallel version.</p>
+<h4 id="61-prim-parallel-version">6.1 Prim Parallel Version<a class="headerlink" href="#61-prim-parallel-version" title="Permanent link">&para;</a></h4>
+<p>Prim algorithm has the least parallelism possiblity. Because each time we need to update the distance vecter, which can't be paralleled, since each element can't be changed by two processes. What we can do is that: we can use paralleled priority queue with insert time complexity of  <span class="arithmatex">\(O(1)\)</span> .</p>
+<h4 id="62-kruskal-parallel-version">6.2 Kruskal Parallel Version<a class="headerlink" href="#62-kruskal-parallel-version" title="Permanent link">&para;</a></h4>
+<p>There are two ways to parallelize the Kruskal algorithm. The first is to parallelize the sorting stage. We know that in Kruskal algorithm, we need to sort all the edges by their weight, which could be parallelized. We can sort  <span class="arithmatex">\(n\)</span> elements in   <span class="arithmatex">\(O(\log n)\)</span>  time with   <span class="arithmatex">\(n\)</span>  processors. So the total time would be   <span class="arithmatex">\(O(m\alpha(n))\)</span> . The second way is to parallelize an adaptation of Kruskal algorithm, which is named Filter-Kruskal algorithm[10]. </p>
+<h4 id="63-sollin-parallel-version">6.3 Sollin Parallel Version<a class="headerlink" href="#63-sollin-parallel-version" title="Permanent link">&para;</a></h4>
+<p>In Sollin's process, we have three stages. The first stage is finding the lightest edge, which can be parallelized; the second stage is to go through each subgraph, which can be parallelized; the third stage is to contract the graph, which can be parallelized. The respective time complexity is   <span class="arithmatex">\(O(\frac{m}{p}+\log n+\log p), O(\frac{n}{p}+\log n), O(\frac{m}{p}+\log n)\)</span> .</p>
+<h3 id="7-other-applicatioins-and-properties">7 Other Applicatioins and Properties<a class="headerlink" href="#7-other-applicatioins-and-properties" title="Permanent link">&para;</a></h3>
+<p>There are so many different variations about MST, coming up with different graceful properties. We can impose some edges, which means that these edges must be in MST, and then construct the MST; We can add a new vertex and the incident edges and find the new MST based on the previous MST, which is one of our homework problems; We can delete one vertex and find the new MST; We can change the weight of one edge and find the MST; We can get linear time approxiamations on MST, to name but a few.<br />
+Here I will introduce some simple properties:</p>
+<ol>
+<li>Given a graph with its MST, and a new vertex with its incident edges, we can find the new MST in  <span class="arithmatex">\(O(n)\)</span> time. This is based the observation: the new MST will only contain the newly added edges and the edges in the original MST.</li>
+<li>Given a graph with its MST, and a deleted vertex, we can also ensure that the new MST will consist all the edges in the previous MST except for these deleted ones.</li>
+<li>Add a constant to the weight of every vertex will not change the MST.</li>
+<li>Change the weight of an edge, there are four cases in total. If we decrease the edge in MST, remains the same; If we increase the edge not in MST, remains the same; If we increase the edge in MST, we just need   <span class="arithmatex">\(O(m)\)</span>  time to find the new edge connecting the two components; If we decrease the edge not in MST, we just need to find the circle in  <span class="arithmatex">\(MST\cup edge\)</span> , if the decreased weight is smaller than any edge in that circle, we can do a substitution.</li>
+<li>There might be many MSTs in a graph, but all the MSTs have the same edges-weight-set, which means that: if we only focus on the weight of the edges in MST, then the sorted array of the weights of the edges in any MST is the same.</li>
+</ol>
+<h3 id="8-reference">8 Reference<a class="headerlink" href="#8-reference" title="Permanent link">&para;</a></h3>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Slides about MST and cut optimality and path optimality conditions <a href="https://copland.udel.edu/~amotong/teaching/algorithm%20design/lectures/(Lec%2012)%20Greedy%20Strategy%20-%20Minimum%20Spanning%20Tree%20-%20Optimality%20Condition.pdf">https://copland.udel.edu/~amotong/teaching/algorithm%20design/lectures/(Lec%2012)%20Greedy%20Strategy%20-%20Minimum%20Spanning%20Tree%20-%20Optimality%20Condition.pdf</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Tarjan RE. Data structures and network algorithms. In CBMS-NFS Regional Conference Series in Applied Mathematics. Philadelphia: Society for Industrial and Applied Mathematics, 1983. p. 44.<br />
+<a href="https://www.amazon.com/Structures-Algorithms-CBMS-NSF-Conference-Mathematics/dp/0898711878">https://www.amazon.com/Structures-Algorithms-CBMS-NSF-Conference-Mathematics/dp/0898711878</a><br />
+(This is a book, so it's the link of the book on Amazon)&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Slides about MST and blue rule and red rule<br />
+<a href="https://www.cs.princeton.edu/~wayne/cs423/lectures/mst.pdf">https://www.cs.princeton.edu/~wayne/cs423/lectures/mst.pdf</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p>Linear Time Median Finding: <a href="https://rcoh.me/posts/linear-time-median-finding/">https://rcoh.me/posts/linear-time-median-finding/</a>&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>FINDING MINIMUM SPANNING TREES, DAVID CHERITON AND ROBERT ENDRE TARJAN<br />
+<a href="https://epubs.siam.org/doi/pdf/10.1137/0205051">https://epubs.siam.org/doi/pdf/10.1137/0205051</a>&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:9">
+<p>A Simpler Minimum Spanning Tree Verification Algorithm <br />
+<a href="https://www.cs.princeton.edu/courses/archive/fall03/cs528/handouts/A%20Simpler%20Minimum%20Spanning.pdf">https://www.cs.princeton.edu/courses/archive/fall03/cs528/handouts/A%20Simpler%20Minimum%20Spanning.pdf</a>&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Johnson DB. Priority queues with update and "finding minimum spanning trees. Information Processing Letters 1975;4:53}7.<br />
+<a href="https://www.sciencedirect.com/science/article/abs/pii/0020019075900010">https://www.sciencedirect.com/science/article/abs/pii/0020019075900010</a> <br />
+ZJU didn't subscribe to this journel, pity.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Improved Multiple Constant Multiplication Using a Minimum Spanning Tree<br />
+<a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=1399088">https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=1399088</a>&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>Imposing edges in Minimum Spanning Tree<br />
+<a href="https://arxiv.org/pdf/1912.09360.pdf">https://arxiv.org/pdf/1912.09360.pdf</a>&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+</li>
+<li id="fn:10">
+<p>The Filter-Kruskal Minimum Spanning Tree Algorithm<br />
+<a href="http://algo2.iti.kit.edu/documents/fkruskal.pdf">http://algo2.iti.kit.edu/documents/fkruskal.pdf</a>&#160;<a class="footnote-backref" href="#fnref:10" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="__comments">Comments</h2>
+<script src="https://giscus.app/client.js"
+      data-repo="27rabbitlt/27rabbitlt.github.io"
+      data-repo-id="R_kgDOIUbPmg"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOIUbPms4CSV-C"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="dark_dimmed"
+      data-lang="en"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async>
+</script>
+<!-- Synchronize Giscus theme with palette -->
+<script>
+  var giscus = document.querySelector("script[src*=giscus]")
+
+  /* Set palette on initial load */
+  var palette = __md_get("__palette")
+  if (palette && typeof palette.color === "object") {
+    var theme = palette.color.scheme === "slate" ? "dark" : "light"
+    giscus.setAttribute("data-theme", theme) 
+  }
+
+  /* Register event handlers after documented loaded */
+  document.addEventListener("DOMContentLoaded", function() {
+    var ref = document.querySelector("[data-md-component=palette]")
+    ref.addEventListener("change", function() {
+      var palette = __md_get("__palette")
+      if (palette && typeof palette.color === "object") {
+        var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+        /* Instruct Giscus to change theme */
+        var frame = document.querySelector(".giscus-frame")
+        frame.contentWindow.postMessage(
+          { giscus: { setConfig: { theme } } },
+          "https://giscus.app"
+        )
+      }
+    })
+  })
+</script>
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../../from_oi_wiki/js/extra.js?v=16"></script>
+      
+        <script src="../../../js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

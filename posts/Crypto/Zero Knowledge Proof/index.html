@@ -1,0 +1,3846 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://27rabbitlt.github.io/posts/Crypto/Zero%20Knowledge%20Proof/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../RSA/">
+      
+      
+      <link rel="icon" href="../../../asset/black_circle_rabbit.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Zero Knowledge Proof - RABBIT HOLE</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../from_oi_wiki/css/extra.css?v=13">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#week-1-intro--basic-definition" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="RABBIT HOLE" class="md-header__button md-logo" aria-label="RABBIT HOLE" data-md-component="logo">
+      
+  <img src="../../../asset/black_circle_rabbit.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RABBIT HOLE
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Zero Knowledge Proof
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/27rabbitlt/27rabbitlt.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    27rabbitlt pages
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../.." class="md-tabs__link">
+          
+  
+  
+  RABBIT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Crypto
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ALGO/" class="md-tabs__link">
+          
+  
+  
+  ALGO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../CPP/" class="md-tabs__link">
+          
+  
+  
+  CPP
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../MATH/" class="md-tabs__link">
+          
+  
+  
+  MATH
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../MISC/working_setting/" class="md-tabs__link">
+          
+  
+  
+  MISC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../About/" class="md-tabs__link">
+          
+  
+  
+  About
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../NLP/LM-LSS/" class="md-tabs__link">
+          
+  
+  
+  NLP
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tournaments_hamiltonicity/sudakov-robust-dirac-graph/" class="md-tabs__link">
+          
+  
+  
+  tournaments_hamiltonicity
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../RSS_or_Sources/sources/" class="md-tabs__link">
+          
+  
+  
+  RSS_or_Sources
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../numexpr/" class="md-tabs__link">
+          
+  
+  
+  numexpr
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../pciedriver/init/" class="md-tabs__link">
+          
+  
+  
+  pciedriver
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../formal-language/chap1/" class="md-tabs__link">
+          
+  
+  
+  formal-language
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="RABBIT HOLE" class="md-nav__button md-logo" aria-label="RABBIT HOLE" data-md-component="logo">
+      
+  <img src="../../../asset/black_circle_rabbit.png" alt="logo">
+
+    </a>
+    RABBIT HOLE
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/27rabbitlt/27rabbitlt.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    27rabbitlt pages
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    RABBIT
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            RABBIT
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ME
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Crypto
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Crypto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Crypto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Zero Knowledge Proof
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Zero Knowledge Proof
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#week-1-intro--basic-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Week 1 Intro &amp; Basic Definition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Week 1 Intro &amp; Basic Definition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#theorem-attema-cramer-kohl-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      Theorem Attema, Cramer, Kohl 2021
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sigma-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sigma-Protocol
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sigma-Protocol">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schnorr-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schnorr Protocol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#same-dlog-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      Same DLOG Protocol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pedersen-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pedersen Protocol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiplication-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiplication Protocol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-degree-circuits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Low Degree Circuits
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#week-7-sumcheck-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      Week 7 Sumcheck Protocol
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Week 7 Sumcheck Protocol">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-sumcheck-protocol-itself" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Sumcheck Protocol Itself
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-conp-is-in-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 coNP Is in IP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-gkr-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 GKR Protocol
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iop-pcp-and-r1cs" class="md-nav__link">
+    <span class="md-ellipsis">
+      IOP, PCP and R1CS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IOP, PCP and R1CS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#polynomial-commitment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Polynomial Commitment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#side-notes-about-complexity-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      Side Notes About Complexity Class
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nizk" class="md-nav__link">
+    <span class="md-ellipsis">
+      NIZK
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#r1cs-as-polynomial-divisibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      R1CS as polynomial divisibility
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RSA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RSA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Further_Read/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Further_Read
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Certificate_and_Sign/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Certificate_and_Sign
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ALGO
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            ALGO
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ALGO
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/MST_survey/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MST_survey
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Competitive_Contest
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Competitive_Contest
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/Competitive_Contest/KMP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    KMP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/Competitive_Contest/Minimize_The_Number_of_Swaps_to_Sort_List/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Minimize_The_Number_of_Swaps_to_Sort_List
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/Competitive_Contest/Sieve%20of%20Euler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sieve of Euler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/Competitive_Contest/Strongly%20Connected%20Component/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Strongly Connected Component
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/Competitive_Contest/DSU_On_Tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DSU_On_Tree
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_6" id="__nav_3_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    CF
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            CF
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/Competitive_Contest/CF/cf1672H/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    cf1672H
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/RandomizedIncrementalAlgo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RandomizedIncrementalAlgo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/Dilworth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dilworth
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/nearest_pair/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    nearest_pair
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/scanning_line/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    scanning_line
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/segment_tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    segment_tree
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/NetworkFlow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    NetworkFlow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    CPP
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            CPP
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CPP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CPP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CPP/CRTP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CRTP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CPP/Further%20Read/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Further Read
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UB
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            UB
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CPP/UB/infinite_loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    infinite_loop
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CPP/Concurrency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Concurrency
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CPP/memory_order/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    memory_order
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    MATH
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            MATH
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MATH
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/FFT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FFT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/Interesting%20Puzzle%20or%20Paper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Interesting Puzzle or Paper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    MISCS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            MISCS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/MISCS/Continuous%2C%20all%20direction%20derivative%20exist%20but%20not%20differentiable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Continuous, all direction derivative exist but not differentiable
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Combinatorial_Maths
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            Combinatorial_Maths
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/Combinatorial_Maths/Burnside%27s_Lemma/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Burnside's_Lemma
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Linear_Algebra
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            Linear_Algebra
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/Linear_Algebra/Chpater%203/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chpater 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/Linear_Algebra/theorems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    theorems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/AMC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AMC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/AdvancedFormalLanguageTheory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AdvancedFormalLanguageTheory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/TDA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    TDA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/AbstractAlgebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AbstractAlgebra
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_11" id="__nav_5_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Complexity
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_11">
+            <span class="md-nav__icon md-icon"></span>
+            Complexity
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/Complexity/Ladner%20Theorem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ladner Theorem
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/LP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/GCA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GCA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/Complex_Analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Complex_Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_15" id="__nav_5_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ODE
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_15">
+            <span class="md-nav__icon md-icon"></span>
+            ODE
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MATH/ODE/eigenvalue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    eigenvalue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    MISC
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            MISC
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MISC/working_setting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    working_setting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MISC/latex_tips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    latex_tips
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MISC/eride_worktips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    eride_worktips
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MISC/WindowsSettings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    WindowsSettings
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MISC/books/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    books
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            About
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../About/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../About/Bachelor%20Courses%20Description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bachelor Courses Description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../About/Master%20Courses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Master Courses
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    NLP
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            NLP
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../NLP/LM-LSS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LM-LSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    tournaments_hamiltonicity
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            tournaments_hamiltonicity
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tournaments_hamiltonicity/sudakov-robust-dirac-graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    sudakov-robust-dirac-graph
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    RSS_or_Sources
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            RSS_or_Sources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RSS_or_Sources/sources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    sources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    numexpr
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            numexpr
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../numexpr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    numexpr
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../numexpr/refcount/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    refcount
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    pciedriver
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            pciedriver
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pciedriver/init/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    init
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    formal-language
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            formal-language
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../formal-language/chap1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    chap1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../formal-language/chap2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    chap2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#week-1-intro--basic-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Week 1 Intro &amp; Basic Definition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Week 1 Intro &amp; Basic Definition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#theorem-attema-cramer-kohl-2021" class="md-nav__link">
+    <span class="md-ellipsis">
+      Theorem Attema, Cramer, Kohl 2021
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sigma-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sigma-Protocol
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sigma-Protocol">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schnorr-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schnorr Protocol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#same-dlog-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      Same DLOG Protocol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pedersen-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pedersen Protocol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiplication-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiplication Protocol
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-degree-circuits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Low Degree Circuits
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#week-7-sumcheck-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      Week 7 Sumcheck Protocol
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Week 7 Sumcheck Protocol">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-sumcheck-protocol-itself" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Sumcheck Protocol Itself
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-conp-is-in-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 coNP Is in IP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-gkr-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 GKR Protocol
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iop-pcp-and-r1cs" class="md-nav__link">
+    <span class="md-ellipsis">
+      IOP, PCP and R1CS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IOP, PCP and R1CS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#polynomial-commitment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Polynomial Commitment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#side-notes-about-complexity-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      Side Notes About Complexity Class
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nizk" class="md-nav__link">
+    <span class="md-ellipsis">
+      NIZK
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#r1cs-as-polynomial-divisibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      R1CS as polynomial divisibility
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Zero Knowledge Proof</h1>
+
+<p>复习到哪里写到哪里，可能语言乱飞，逻辑不通，考完慢慢修复。</p>
+<h2 id="week-1-intro--basic-definition">Week 1 Intro &amp; Basic Definition<a class="headerlink" href="#week-1-intro--basic-definition" title="Permanent link">&para;</a></h2>
+<p>Interactive proof 通俗的说就是两个人聊天，一个人试图向另一个人证明自己知道一个事，但是又不想透露其中的信息。一个简单的例子是一个人试图向另一个人证明 1000000016000000063 是一个合数，但是并不想透露它能分解成哪两个数。这非常有用，它可以让你显得很厉害的同时也不会泄露信息使得别人听了之后也能显得很厉害。</p>
+<p>正经的来说，传统证明只有一个参与者，而 interactive proof 则有 prover 和 verifier 两个部分组成，比较好的刻画了很多场景，例如身份验证、区块链验证等等。prover 和 verifier 之间会进行通信，最终 verifier 会根据他所看到的内容给出最终的判断，1 表示接受，0 表示拒绝，分别对应相信/不相信对方真的知道这件事。</p>
+<p>更正经的来说，一个 interactive proof 针对的是一个 language，给定一个 instance 对双方都可见，一个 witness 仅对 prover 可见，verifier 根据 prover 发送的过往信息和 instance 以及自己的随机性给出回复；prover 根据 verifier 过往的回复和 instance、witness 以及自己的随机性给出新的回复，并循环反复直到有限步后 verifier 输出 1 或 0。</p>
+<p>一个好的 interactive proof 应该满足三个性质：</p>
+<ul>
+<li>completeness</li>
+<li>soundness</li>
+<li>zero-knowledge</li>
+</ul>
+<p>这三个性质分别描述了：</p>
+<ul>
+<li>completeness：如果 prover 真的知道这个知识，也即 instance 真的在 language 里，verifier 应该相信，也即输出 1。</li>
+<li>soundness：如果 prover 不知道这个知识，也即 instance 并不在 language 里，verifier 不应该盲目相信，也即输出 0。</li>
+<li>zero-knowledge：verifier 不应该从证明过程中获得任何『知识』。想要定义什么是知识比较困难，我们稍后讲解。</li>
+</ul>
+<p>正经的来说，我们对 completeness 和 soundness 的定义为：</p>
+<div class="admonition note">
+<p class="admonition-title">completeness</p>
+<p><span class="arithmatex">\(\forall x \in \mathcal{L}, \text{Pr}_{r,s}[\langle P(r), V(s) \rangle (x)=1] \ge \frac{3}{4}\)</span>  </p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">soundness</p>
+<p><span class="arithmatex">\(\forall x \notin \mathcal{L}, \forall P^*, \text{Pr}_{r,s}[\langle P^*(r), V(s) \rangle (x)=0] \le \frac{1}{2}\)</span></p>
+</div>
+<p>For zero knowledge we have a brilliant idea: if verifier could produce the <em>proof</em> by itself then we can say there is zero knowledge gained by verifier. So what's the definition of the proof? A proof for verifier consists of all the <em>view</em> that verifier <em>sees</em>. If there is a <strong>efficient</strong> simulator <span class="arithmatex">\(S\)</span> such that for <span class="arithmatex">\(\forall x \in \mathcal{L}\)</span>, we have <span class="arithmatex">\(\{\text{View}_{V^*}^P\}=\{S(V^*,x)\}\)</span>, then we say <span class="arithmatex">\((P, V)\)</span> is a perfect zero-knowledge proof, here the brace means the probability distribution.</p>
+<p>A classical example for perfect ZKP is Graph Isomorphism ZKP.</p>
+<p>图同构问题本身显然是 NP 问题，但是是否是 NP-Complete 暂时还不知道，有可能是 P 问题。这里只是举例说明什么是 zero-knowledge，实际上 IP 的计算能力是很强的。</p>
+<p><img alt="Graph_Isomorphism" src="../assets/zkp_GI.png" /></p>
+<p>这里 Prover 将原图 <span class="arithmatex">\(G_0\)</span> 打乱得到 <span class="arithmatex">\(H\)</span> 并发送给 Verifier，然后由 Verifier 选择一个 01 随机数 <span class="arithmatex">\(b\)</span> 发回 Prover。如果两个图真的同构，那么不管 Verifier 的随机数是什么，Prover 都应该能找到一种排列使得 <span class="arithmatex">\(\sigma(G_b) = H\)</span>。所以 Prover 把这个排列发送给 Verifier 去验证。</p>
+<p>如果两个图真的同构，显然这个过程会顺利通过；如果两个图不同构，那么 V 有 50% 的概率 reject（如果不同构，随机到另一个图 P 就没办法发送回正确的排列了）。所以我们就证明了这个协议的 Completeness 和 Soundness。</p>
+<p>Zero-knowledge 也是很显然的，从 V 的视角来看，他看到了 <span class="arithmatex">\(H, b, \tau\)</span>，而他自己也可以随即打乱 <span class="arithmatex">\(G_0\)</span> 得到 <span class="arithmatex">\(H\)</span>，由于这是他自己打乱的，所以 <span class="arithmatex">\(\tau\)</span> 也是容易得到的。故而存在一个 simulator 模拟出 V 的视角，也就证明 V 从这个证明中得不到任何信息。</p>
+<p>zero-knowledge 的定义也有一些变种：</p>
+<div class="admonition note">
+<p class="admonition-title">black-box zero-knowledge</p>
+<p>If exist efficient simulator <span class="arithmatex">\(S\)</span> s.t. <span class="arithmatex">\(\forall V^*, \forall x \in \mathcal{L}\)</span>, we have <span class="arithmatex">\(\{\text{View}_{V^*}^P\} = \{S_{V^*}(x)\}\)</span></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">honest verifier zero-knowledge (HVZK)</p>
+<p>If exist simulator <span class="arithmatex">\(S\)</span> for honest verifier <span class="arithmatex">\(V\)</span> s.t. <span class="arithmatex">\(\{\text{View}_{V}^P\}=\{S(V,x)\}\)</span> </p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">special/semi honest verifier zero-knowledge (SHVZK)</p>
+<p>If exist efficient simulator <span class="arithmatex">\(S\)</span> s.t. <span class="arithmatex">\(\forall x \in \mathcal{L}, s \in \{0,1\}^*\)</span>, we have <span class="arithmatex">\(\{\text{View}_{V(s)}^P\}=\{S(V(s),x)\}\)</span></p>
+</div>
+<p>Here black-box zero-knowledge is a stricter definition of zero-knowledge, and I didn't see any rationale behind this definition.</p>
+<p>HVZK means when constructing simulator, we can assume that V is honest, instead of malicious. Choosing HVZK instead of ZK doesn't mean that we already know there is some malicious V that could extract knowledge, sometimes it's just that we don't know how to prove ZK. </p>
+<p>SHVZK stands for semi or special HVZK. <strong>Special xxx</strong> under this context means it's a special form of <strong>xxx</strong> and it's sufficient for <strong>xxx</strong>. We usually use SHVZK with regard of sigma protocol because in that sense SHVZK is enough for HVZK and it's easier to analyse.</p>
+<p>A classical example for HVZK is Graph 3-coloring ZKP.</p>
+<p>The protocol operates as follows:</p>
+<ul>
+<li>P randomly permutates the coloring and commits it.</li>
+<li>V chooses arandom edge <span class="arithmatex">\((i, j)\)</span> and send this choice</li>
+<li>P reveals to V only the color of <span class="arithmatex">\(i\)</span> and <span class="arithmatex">\(j\)</span></li>
+<li>V checks if commitment is correct and if the colors are different.</li>
+</ul>
+<p>It's easy to construct simulator for honest verifier, using the similar tech in GI ZKP, but it's not trivial to analyse the malicious case. If a V is malicious, it might send <span class="arithmatex">\((i, j)\)</span> while the two vertices aren't adjacent. In this case how to simulate the view of V if we don't actually know the correct coloring? So here we choose HVZK over ZK.</p>
+<p>Let us move on to another topic: <strong>indistinguishability</strong>.</p>
+<ul>
+<li><em>Perfectly indistinguishable</em> if for any algorithm <span class="arithmatex">\(D\)</span>, parameter <span class="arithmatex">\(\lambda\)</span>, <span class="arithmatex">\(|\text{Pr}[D(1^\lambda, X) = 1] - \text{Pr}[D(1^\lambda, Y) = 1]| = 0\)</span></li>
+<li><em>Statistically indistinguishable</em> if for any algorithm <span class="arithmatex">\(D\)</span>, parameter <span class="arithmatex">\(\lambda\)</span>, <span class="arithmatex">\(|\text{Pr}[D(1^\lambda, X) = 1] - \text{Pr}[D(1^\lambda, Y) = 1]| \le \text{negl}(\lambda)\)</span></li>
+<li><em>Computationally indistinguishable</em> if for any efficient algorithm <span class="arithmatex">\(D\)</span>, parameter <span class="arithmatex">\(\lambda\)</span>, <span class="arithmatex">\(|\text{Pr}[D(1^\lambda, X) = 1] - \text{Pr}[D(1^\lambda, Y) = 1]| \le \text{negl}(\lambda)\)</span></li>
+</ul>
+<p>These are three types of indistinguishability. The perfect one means the two distributions really have no difference.; the statistical one means you need to be very lucky to find some difference; the computational one means you need to be very lucky and work very hard to find some difference.</p>
+<p>Based on different indistinguishability, we can define different zero-knowledge properties: to what extent does the generated view looks like the real view.</p>
+<p>Accordingly, we have perfect one, statistical one, and computational one.</p>
+<p>Put zero-knowledge aside we have some variants of soundness.</p>
+<p>We call protocols whose soundness only holds against <em>efficient</em> provers (so we can prove soundness using cryptographic assumptions) <strong>Interactive Arguments</strong>. It's a strange name, we could just call it computationally sound proof system. The only difference is that we only require <em>computationally</em> soundness. In particular, perfect ZK <strong>arguments</strong> are known to exist for every language in NP, it is considered unlikely that perfect ZK <strong>proofs</strong>.</p>
+<p>Another variant is knowledge soundness, which assures when V accepts, then we can extract the witness from the messages sent by P. Note that normal soundness requirement only ensures V to know there exist a witness (because <span class="arithmatex">\(x\)</span> is in the language, thus a witness exists), but V can't be sure about whether P has this witness. This would not be strong enough in some cases, like login protocol.</p>
+<div class="admonition note">
+<p class="admonition-title">Proof of Knowledge</p>
+<p>(adapted from <a href="https://crypto.stanford.edu/cs355/19sp/lec5.pdf">https://crypto.stanford.edu/cs355/19sp/lec5.pdf</a>, I think this definition is better than that shown in slide)<br />
+An IP <span class="arithmatex">\((P, V)\)</span> for language <span class="arithmatex">\(L\)</span> is a <strong>proof of knowledge</strong> with <strong>knowledge error</strong> <span class="arithmatex">\(\epsilon\)</span>, if there exists an efficient (expected polynomial running time) algorithm <span class="arithmatex">\(E\)</span>, called an extractor, s.t. for every instance <span class="arithmatex">\(x\)</span> and every prover <span class="arithmatex">\(P\)</span>: <span class="arithmatex">\(\text{Pr}[(x, w) \in L: w = E^P(x)] \ge \text{Pr}[(P,V)(x)=1] - \epsilon\)</span>.</p>
+</div>
+<p>Some explanations about the definition: The probability of V accepts is <span class="arithmatex">\(\text{Pr}[(P,V)(x)=1]\)</span> and we can always extract a correct witness except small probability (knowledge error). It doesn't matter P really knows the witness, if we can extract witness from P's messages, P itself could extract witness from messages as well. So this is our definition of "<em>knows</em>": you knows everything that you could efficiently compute.</p>
+<p>Knowledge error <span class="arithmatex">\(\epsilon\)</span> directly implies soundness error <span class="arithmatex">\(\epsilon\)</span>.</p>
+<p>Now some more definitions in order to introduce sigma-protocol.</p>
+<p>We define an IP <span class="arithmatex">\((P, V)\)</span> is public coin if V's messages are exactly random bits and nothing else. In this case, V's messages are also called <em>challenges</em>. For example, GI ZKP is a public coin IP because the only message sent by V is a random bit; while the trivial GNI (Graph Not Isomorphism) ZKP is not a public coin because its random bit must not be leaked otherwise P could cheat V. However, <a href="https://pages.cs.wisc.edu/~jyc/710/Goldwasser-Sipser.pdf">GS1986</a> proves every language with an IP has a public coin IP, by proving public coins and private coins the same complexity class as <strong>Probabilistic, nondeterministic, polynomial time Turing machine</strong>.</p>
+<p>Here's another concept called <strong>Trees of transcipts</strong>. </p>
+<p>An <span class="arithmatex">\((n_1, \cdots, n_k)\)</span> tree of transcripts for a public coin IP is a set of <span class="arithmatex">\(\Pi_{i=1}^{k} n_i\)</span> transcipts arranged in a tree s.t.:</p>
+<ul>
+<li>Vertices correspond to P messages.</li>
+<li>Edges correspond to V challenges.</li>
+<li>Each node at depth <span class="arithmatex">\(i\)</span> has <span class="arithmatex">\(n_i\)</span> child edges labelled with distinct challenges.</li>
+<li>Each transcript corresponds to one root-to-leaf path.</li>
+<li>The tree is <em>accepting</em> if V would accept every transcript.</li>
+</ul>
+<p>Finally we can define another soundness: <strong>Special soundness</strong>.</p>
+<p>A public coin IP is <span class="arithmatex">\((n_1, \cdots, n_k)\)</span>-<em>special sound</em> if exist an efficient extractor <span class="arithmatex">\(E\)</span> takes instance and a <span class="arithmatex">\((n_1, \cdots, n_k)\)</span>-tree of <em>accepting</em> transcripts and produces a witness <span class="arithmatex">\(w\)</span> with <span class="arithmatex">\((x, w) \in \mathcal{R}\)</span>.</p>
+<p>We've already known that special xxx means it's a special form of xxx, and it's sufficient for xxx. So here special soundness implies knowledge soundness, which further implies soundness.</p>
+<h3 id="theorem-attema-cramer-kohl-2021">Theorem Attema, Cramer, Kohl 2021<a class="headerlink" href="#theorem-attema-cramer-kohl-2021" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Theorem Attema, Cramer, Kohl 2021</p>
+<p>Let <span class="arithmatex">\((P,V) be (n_1, \cdots, n_k)\)</span>-special sound with uniformly random V messages from set of size <span class="arithmatex">\(N\)</span>, and <span class="arithmatex">\(\Pi_{i=1}^k n_i\)</span> be polynomially bounded in <span class="arithmatex">\(|x|\)</span>. Then <span class="arithmatex">\((P,V)\)</span> is knowledge sound with knowledge error: <span class="arithmatex">\(k = \frac{N^k - \Pi_{i=1}^k(N-n_i - 1)}{N^k} \le \frac{\sum_{i=1}^k(n_i - 1)}{N}\)</span></p>
+</div>
+<p>The proof could be found here: <a href="https://eprint.iacr.org/2021/307.pdf">https://eprint.iacr.org/2021/307.pdf</a>, section 3.</p>
+<p>The intuition for a three-step sigma-protocol is that: if the protocol is <span class="arithmatex">\(k\)</span>-sound, then given <span class="arithmatex">\(k\)</span> different challenges, we can extract the witness; so if some input is not in the language (which means there doesn't exist a witness for it), then there will be at most <span class="arithmatex">\(k - 1\)</span> accepting challenges for this <span class="arithmatex">\(x \notin L\)</span>, because otherwise we can extract a witness for <span class="arithmatex">\(x\)</span>, which contradicts <span class="arithmatex">\(x \notin L\)</span>. Thus, knowledge error won't exceed <span class="arithmatex">\(k - 1 / |C|\)</span> since the probability of false accepting is at most <span class="arithmatex">\(k - 1 / |C|\)</span>.</p>
+<p>The results could be concluded as:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Soundness</th>
+<th style="text-align: center;">ZK</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Proofs</td>
+<td style="text-align: center;">Perfect/Sta</td>
+<td style="text-align: center;">Computational</td>
+</tr>
+<tr>
+<td style="text-align: center;">Arguments</td>
+<td style="text-align: center;">Computational</td>
+<td style="text-align: center;">Perfect/Sta</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sigma-protocol">Sigma-Protocol<a class="headerlink" href="#sigma-protocol" title="Permanent link">&para;</a></h2>
+<p>Finally we get here, sigma-protocol.</p>
+<p>A <strong>sigma-protocol</strong> is an 3-move, public coin IP satisfying:</p>
+<ul>
+<li>completeness with no errors</li>
+<li><span class="arithmatex">\(k\)</span>-special soundness</li>
+<li>SHZVK</li>
+</ul>
+<p>By definition, GI ZKP is a sigma-protocol.</p>
+<p>Now we introduce another important concept: <strong>commitment schemes</strong>.</p>
+<p>A <strong>commitment scheme</strong> is a collection of 3 PPT algos (Setup, Commit, Verify) s.t. for any parameter <span class="arithmatex">\(\lambda\)</span>:</p>
+<ul>
+<li>Setup(<span class="arithmatex">\(1^\lambda\)</span>) outputs public parameters <span class="arithmatex">\(pp\)</span> describing message space <span class="arithmatex">\(M\)</span>, randomness space <span class="arithmatex">\(R\)</span>, decommitment space <span class="arithmatex">\(D\)</span> and commitment space <span class="arithmatex">\(C\)</span>.</li>
+<li>Commit(<span class="arithmatex">\(pp, m \in M, r \leftarrow_\$ R\)</span>) outputs a pair <span class="arithmatex">\((c, d) \in C \times D\)</span>, where <span class="arithmatex">\(c\)</span> is the commitment, <span class="arithmatex">\(d\)</span> is the secret de-commitment, normally <span class="arithmatex">\(d\)</span> won't be sent to others unless Verify requires it.</li>
+<li>Verify(<span class="arithmatex">\(pp, c \in C, d \in D, m \in M\)</span>) outputs a bit <span class="arithmatex">\(b \in \{0, 1\}\)</span>, where <span class="arithmatex">\(b\)</span> is the verifying result, <span class="arithmatex">\(0, 1\)</span> stands for failiure and success respectively.</li>
+</ul>
+<p>There are two important properties for commitment scheme: <strong>hiding</strong> and <strong>binding</strong>.</p>
+<p>Hiding means it's difficult to determine the original message only from the commitment. Given the commitment and public parameter, how much does the original message distribution differs from uniform distribution implies how difficult it is to extract original message from commitment and <span class="arithmatex">\(pp\)</span>.</p>
+<p>Perfectly hiding indicates the message distribution given commitment and <span class="arithmatex">\(pp\)</span> is exactly the uniform distribution; computationally hiding indicates unless you work very hard (using unbounded time to crack) or very lucky (i.e. something with negelectable probability happens), you can't tell the difference, i.e. you can't extract message from commitment.</p>
+<p>Binding means it's difficult to change the message after committed. </p>
+<p>Perfectly binding means the original message is unique; computationally binding means it needs hard work or huge luck to find another message which could generate the same commitment.</p>
+<p>Again, <span class="arithmatex">\(\text{Perfect Hiding} \&amp; \text{Perfect Binding} = False\)</span>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Perfect Hiding</th>
+<th style="text-align: center;">Compuatationally Hiding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Perfect Binding</td>
+<td style="text-align: center;">False</td>
+<td style="text-align: center;">True</td>
+</tr>
+<tr>
+<td style="text-align: center;">Computationally Binding</td>
+<td style="text-align: center;">True</td>
+<td style="text-align: center;">True</td>
+</tr>
+</tbody>
+</table>
+<p>Here we introduce two famous commitment scheme: Elgamal Commitment and Pedersen Commitment.</p>
+<p><img alt="Elgamal Commitment" src="../assets/zkp_elgamal_commitment.png" /></p>
+<p>Elgamal Commitment is based on Elgamal encryption (<a href="https://en.wikipedia.org/wiki/ElGamal_encryption">https://en.wikipedia.org/wiki/ElGamal_encryption</a>), so it inherits the security assumption: Decisional Deffie-Hellman assumption (<a href="https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption">https://en.wikipedia.org/wiki/Decisional_Diffie%E2%80%93Hellman_assumption</a>).</p>
+<p>It's computationally hiding and perfectly binding.</p>
+<p><img alt="Pedersen Commitment" src="../assets/zkp_pederson_commitment.png" /></p>
+<p>The setup is the same as Elgamal commitment, the difference lies in commit function. In Elgamal commitment, we need to send <span class="arithmatex">\(c2 = r \cdot h\)</span> so as to ensure <span class="arithmatex">\(r\)</span> won't be changed easily afterwards. If we don't send <span class="arithmatex">\(rh\)</span> then malicous commit-er could change <span class="arithmatex">\(r\)</span> to another value <span class="arithmatex">\(r'\)</span> and calculate corresponding <span class="arithmatex">\(r'g\)</span> and then eventually open a different value to original message <span class="arithmatex">\(m\)</span>.</p>
+<p>In Pedersen commitment, however, we send <span class="arithmatex">\(mg + rh\)</span>, and we no longer need <span class="arithmatex">\(rh\)</span> in this case because if we want to open another value for <span class="arithmatex">\(m\)</span>, we have to solver DLOG to get a corresponding <span class="arithmatex">\(g\)</span>.</p>
+<p>It's perfectly hiding and computationally binding.</p>
+<p>Sigma protocol together with commitment scheme could be used for NP-complete problem, as we've already seen: Graph 3-coloring problem.</p>
+<p>Consider composition of sigma-protocol, we have this table:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Preserved?</th>
+<th style="text-align: center;">Soundness</th>
+<th style="text-align: center;">ZK</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Sequential</td>
+<td style="text-align: center;">True</td>
+<td style="text-align: center;">True</td>
+</tr>
+<tr>
+<td style="text-align: center;">Parallel</td>
+<td style="text-align: center;">True for proofs; False for arguments</td>
+<td style="text-align: center;">False</td>
+</tr>
+</tbody>
+</table>
+<p>Besides, we have AND OR composition of sigma-protocol, defined as:</p>
+<p><img alt="sigma-and" src="../assets/zkp_sigma_and.png" /></p>
+<p><img alt="sigma-or" src="../assets/zkp_sigma_or.png" /></p>
+<p>Note that in AND composition, two sigma-protocols share one challenge; in OR composition, new protocol uses simulator to generate the response of one protocol.</p>
+<p>In OR composition, we require <span class="arithmatex">\(x, x' \in \mathcal{L}\)</span>, it's strange at the first glance: why both input need to be in the language? Here, what we want is not just to prove <span class="arithmatex">\(x, x'\)</span> in language, what we want is to prove we know the witness! Also note in OR composition, P need to know whether it's <span class="arithmatex">\((x, w) \in R\)</span> or <span class="arithmatex">\((x', w) \in R\)</span>, P needs to decide its strategy based on this (decide to simulate which one and really execute which one).</p>
+<div class="admonition danger">
+<p class="admonition-title">Not Only Prove in Language, Also Prove We Know Witness</p>
+<p>In some cases, it's enough to show verifier that input is in the language, while in other cases, it's more important to show V we actually know the witness. For example, when it comes to graph isomorphism problem, it might be enough to show input is in language (i.e. the two graphs are isomorphic); while in DLOG protocol, it's trivial to show input is in language because every pair <span class="arithmatex">\(A, G\)</span> is in language, what's significant is that we really know the <span class="arithmatex">\(s\)</span> s.t. <span class="arithmatex">\(A = s \cdot G\)</span> !!!</p>
+</div>
+<p>Completeness, special soundness and SHVZK of AND OR composition are preserved in both cases.</p>
+<div class="admonition failure">
+<p class="admonition-title">TBD: need formal definition for MPC</p>
+</div>
+<p>Now let us introduce another concept: MPC (Multi Party Computation).</p>
+<p>There are multiple players want to compute a joint function of their private inputs without leaking information on the secret. Finally all players should get the output, not knowing others' secrets.</p>
+<p>MPC has many interesting and practical applications, such as: Sugar Beet Auction (<a href="https://en.wikipedia.org/wiki/Danish_Sugar_Beet_Auction">https://en.wikipedia.org/wiki/Danish_Sugar_Beet_Auction</a>), Hotel Number Adjacency (<a href="https://www.zhihu.com/question/397446056">https://www.zhihu.com/question/397446056</a>).</p>
+<p>We say an MPC protocol computes a function <span class="arithmatex">\(f\)</span> in semi-honest model, if it satisfies:</p>
+<ul>
+<li>correctness: any player's output is correct</li>
+<li>t-privacy: there exists a simulator s.t. any <span class="arithmatex">\(t\)</span> players get no information on others' secret.</li>
+</ul>
+<p>Here we are gonna use MPC in the head to construct a sigma-protocol.</p>
+<p>The idea is quite similar to Graph 3-coloring ZKP: the consistency of colors is the consistency of Views; the commitment of colors is the commitment of Views.</p>
+<p>The process is shown below:</p>
+<p><img alt="mpc-in-the-head" src="../assets/zkp_mpc_head.png" /></p>
+<p>P has a MPC protocol in its head. After execution of MPC in its head, P commits to Views of every player in MPC and send the commitment to V. V randomly pick two players <span class="arithmatex">\(i, j\)</span> and ask P to open the commitment of Views of <span class="arithmatex">\(i, j\)</span>. Fianlly V checks if commitment scheme is valid, if Views of <span class="arithmatex">\(i, j\)</span> are consistent, and if player <span class="arithmatex">\(i, j\)</span> output <span class="arithmatex">\(1\)</span>.</p>
+<p>Analysis:</p>
+<ul>
+<li>Completeness relies on correctness of MPC protocol.</li>
+<li><span class="arithmatex">\(\binom{n}{2}\)</span>-special soundness is obvious since we can open every pair of Views, we can assure global consistency based on local consistency.</li>
+<li>SHVZK comes from efficient simulator of MPC protocol (t-privacy)</li>
+</ul>
+<p>Now we introduce another concept: Fiat-Shamir Heuristic.</p>
+<p>A non-interactive protocol has many advantages, for example: low communication cost, no need to worry about malicous verifier, etc..</p>
+<p>In sigma-protocol, the only usage of verifiers is the generate random challenges. Why don't P generates random challenges for V and send the initial message, challenge, and the final message together, to V, just in one round? The only problem would be that V might not be convinced that P's challenge is really randomly generated instead of carefully picked? We can use a hash function to generate <span class="arithmatex">\(c\)</span> based on shared input <span class="arithmatex">\(x\)</span> and the initial message <span class="arithmatex">\(a\)</span>. We send <span class="arithmatex">\(a, c, z\)</span> together to V and leave V to verify whether <span class="arithmatex">\(z\)</span> is a good result and whether <span class="arithmatex">\(c\)</span> is a valid hash of <span class="arithmatex">\(a\)</span> and <span class="arithmatex">\(x\)</span>.</p>
+<p><img alt="fiat-shamir" src="../assets/zkp_fs.png" /></p>
+<p>Actually, signature scheme works just in this way.</p>
+<div class="admonition faliure">
+<p class="admonition-title">TBD: picnic post-quantum signature scheme</p>
+</div>
+<p>Now lets focus on making sigma-protocols zero-knowledge against malicious verifiers.</p>
+<p>The idea behind compiling sigma-protocol to fully ZK protocol is quite simple. If we let the challenge be controled by both P and V, then malicious V cannot construct specific challenge to break ZK property.</p>
+<p>Consider the new challenge <span class="arithmatex">\(c''\)</span> is the sum of <span class="arithmatex">\(c\)</span> and <span class="arithmatex">\(c'\)</span>, where <span class="arithmatex">\(c\)</span> is provided by P and <span class="arithmatex">\(c'\)</span> is provided by V. If P send <span class="arithmatex">\(c\)</span> to V before V generates <span class="arithmatex">\(c'\)</span>, then V could again construct any target value; but otherwise then how could V be sure P won't change <span class="arithmatex">\(c\)</span> afterwards? Commitment!</p>
+<p>The whole process is:</p>
+<p><img alt="sigma_full_zk" src="../assets/zkp_sigma_fullzk.png" /></p>
+<p>Now let's look at sigma protocols from DLOG.</p>
+<h3 id="schnorr-protocol">Schnorr Protocol<a class="headerlink" href="#schnorr-protocol" title="Permanent link">&para;</a></h3>
+<p>First we introduce Schnorr protocol. The idea is quite simple, P tries to prove to V that it knows the discrete log of <span class="arithmatex">\(A\)</span> with base <span class="arithmatex">\(G\)</span>, within a finite group.</p>
+<p><img alt="schnorr" src="../assets/zkp_schnorr.png" /></p>
+<p>The completeness, ZK and special soundness is obvious. One thing to be noted is that we can use linear algebra way to prove its special soundness by inverting the transformation matrix.</p>
+<h3 id="same-dlog-protocol">Same DLOG Protocol<a class="headerlink" href="#same-dlog-protocol" title="Permanent link">&para;</a></h3>
+<p>Similar to Schnorr protocol, we can derive a Same DLOG protocol, which intends to show two pairs of values have the same discrete log, i.e. <span class="arithmatex">\(A = a \cdot G, V = a \cdot U\)</span>.</p>
+<p><img alt="same_dlog" src="../assets/zkp_same_dlog.png" /></p>
+<p>Using this idea, we can have application for mix-networks.</p>
+<p>A mix-network means given some inputs <span class="arithmatex">\(A_1, \cdots, A_n\)</span>, someone rerandomise and shuffle the input. ZKP could be used to prove the correctness of the rerandomising and shuffling operation. Proof could guarantee operator rerandomized and shuffled correctly, but could not prove it's done randomly.</p>
+<p>Take Elgmal ciphertexts as an example, the original message is <span class="arithmatex">\((c_1, c_2) = (m + rH, rG)\)</span>. The rerandomization is: <span class="arithmatex">\((c_1, c_2) + (r'H, r'G) = (m + (r+r')H, (r+r')G)\)</span>. So we can reduce rerandomization to having same DLOG because if <span class="arithmatex">\((c'_1, c'_2)\)</span> is correct rerandomization result of <span class="arithmatex">\((c_1, c_2)\)</span>, then <span class="arithmatex">\((c_1 - c'_1, c_2 - c'2)\)</span> have the same DLOG, vice versa.</p>
+<p>Shuffling could be modeled as OR composition of sigma-protocol, so the result could be concluded as: if we want to prove <span class="arithmatex">\((c_1, c_2)\)</span> and <span class="arithmatex">\((d_1, d_2)\)</span> correctly rerandomized and shuffled into <span class="arithmatex">\((c'_1, c'_2)\)</span> and <span class="arithmatex">\((d'_1, d'_2)\)</span>, we only need this composition of sigma-protocol:</p>
+<div class="arithmatex">\[\begin{align}
+(c_1 - c'_1, c_2 - c'_2) \text{Same DLOG} \;\; &amp;\textbf{AND} \;\; (d_1 - d'_1, d_2 - d'_2) \text{Same DLOG}\\
+&amp;\textbf{OR}\\
+(c_1 - d'_1, c_2 - d'_2) \text{Same DLOG} \;\; &amp;\textbf{AND} \;\; (d_1 - c'_1, d_2 - c'_2) \text{Same DLOG}
+\end{align}\]</div>
+<h3 id="pedersen-protocol">Pedersen Protocol<a class="headerlink" href="#pedersen-protocol" title="Permanent link">&para;</a></h3>
+<p>Now move on to another topic: Pedersen protocol.</p>
+<p>The idea is to show P knows "secret" <span class="arithmatex">\(a, r\)</span> s.t. <span class="arithmatex">\(A = a \cdot G + r \cdot H\)</span>, given <span class="arithmatex">\(G, H\)</span>. The language is trivial since every <span class="arithmatex">\(A\)</span> could be writen in this form, the only problem is it's hard to really find one.</p>
+<p>The process is very similar to Schnorr protocol, the only difference is that there are two group element <span class="arithmatex">\(G, H\)</span>, while Schnorr only have one:</p>
+<p><img alt="pedersen" src="../assets/zkp_pedersen.png" /></p>
+<p>To model/describe/abstract the similartiy, we consider a basic abstract algebra concept <em>homomorphism</em>. A map <span class="arithmatex">\(f\)</span> is a group homomorphism if <span class="arithmatex">\(f(a_1) + f(a_2) = f(a_1 + a_2)\)</span>.</p>
+<p>It's easy to verify Pedersen and Elgamal commitment scheme satisfies this condition.</p>
+<p>Now we can derive a more general protocol, <strong>Homomorphism preimage protocol</strong>:</p>
+<p><img alt="homopre" src="../assets/zkp_homopre.png" /></p>
+<h3 id="multiplication-protocol">Multiplication Protocol<a class="headerlink" href="#multiplication-protocol" title="Permanent link">&para;</a></h3>
+<p>We can get some insights about how to prove soundness of this kind of protocol.</p>
+<p>First we construct a matrix equation in this form: <span class="arithmatex">\(X \cdot C = ...\)</span>, where <span class="arithmatex">\(X\)</span> denotes the challenge matrix, consisting of challenges and their powers; <span class="arithmatex">\(C\)</span> denotes the commit matrix, consisting of different commitments of messages, masks, etc.. The reason is that if <span class="arithmatex">\(X\)</span> is invertible then we multiply the inversion of <span class="arithmatex">\(X\)</span> to both sides and get openings of commits. By binding properties, there should only be one possible form w.h.p. (<span class="arithmatex">\(G, H\)</span> are analogous to linear space bases).</p>
+<p>Then we need to prove the obtained opening satisfies requirements, here the requirement is <span class="arithmatex">\(a_1 \cdot a_2 = a_3\)</span>. We substitute the equations that V checks, and get a polynomial equation containing <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(a_i\)</span>. If the equation is of degree <span class="arithmatex">\(d\)</span> but there are <span class="arithmatex">\(d+1\)</span> or more challenges <span class="arithmatex">\(x_1, ..., x_{d+1}\)</span> for this equation, then the polynomial must be identical to zero polynomial. Thus we can get a equation for <span class="arithmatex">\(a_i\)</span> by comparing the coefficients.</p>
+<p>Different rows are different branches of tree, different columns are different verifier checks.</p>
+<p>Multiplication protocol can be used to proof that values are non-zero (i.e. value is invertible, exists another value s.t. multiplication is <span class="arithmatex">\(1\)</span>).</p>
+<h3 id="low-degree-circuits">Low Degree Circuits<a class="headerlink" href="#low-degree-circuits" title="Permanent link">&para;</a></h3>
+<p>Low degree circuits is an important protocol because of its application and the analysis method could be applied to other protocols.</p>
+<p>Given a circuit with N add/mul gates, the output could be represented as a polynomial, and here we only consider the case when polynomial degree is bounded by <span class="arithmatex">\(d\)</span>.</p>
+<p>So the relation is:</p>
+<div class="arithmatex">\[\begin{align}
+R_q = \Bigg\{ (\mathbb{G}, G, H, \{A_i\}_{i=1}^{l+1}, p), \{(a_i, r_i)_{i=1}^{l+1}\} : 
+ G, H, \{A_i\} \in \mathbb{G}, \{a_i, r_i\} \in \mathbb{Z}_p, A_i = a_i \cdot G + r_i \cdot H, q(a_1, \cdots, a_l) = a_{l+1} \Bigg\}
+\end{align}\]</div>
+<p>Obviously, multiplication protocol, Schnorr protocol are special cases of low degree circuits protocol.</p>
+<p>Completeness comes from Pedersen's completeness. </p>
+<p>SHVZK analysis is similar to multiplication protocol, all commitments are uniformly distributed except the last one could be uniquely determined. </p>
+<p>Normally a polynomial with degree <span class="arithmatex">\(d\)</span> will have <span class="arithmatex">\(d + 1\)</span> soundness, the way to prove this is to construct <span class="arithmatex">\(X \cdot C = Z \cdot G + R \cdot H\)</span>, where <span class="arithmatex">\(X\)</span> denotes matrix of challenges and their powers; <span class="arithmatex">\(C\)</span> demotes matrix of different commitments; <span class="arithmatex">\(Z\)</span> denotes matrix of masked value <span class="arithmatex">\(z_i\)</span>; <span class="arithmatex">\(R\)</span> denotes matrix of randomness; <span class="arithmatex">\(G, H\)</span> are two group elements. If <span class="arithmatex">\(X\)</span> is invertible then we can have an opening of commitments <span class="arithmatex">\(C\)</span>, which contains witness.</p>
+<h2 id="week-7-sumcheck-protocol">Week 7 Sumcheck Protocol<a class="headerlink" href="#week-7-sumcheck-protocol" title="Permanent link">&para;</a></h2>
+<h3 id="1-sumcheck-protocol-itself">1 Sumcheck Protocol Itself<a class="headerlink" href="#1-sumcheck-protocol-itself" title="Permanent link">&para;</a></h3>
+<p>这个 protocol 的 instance 是 <span class="arithmatex">\(p(X_1, \cdots, X_l)\)</span> over <span class="arithmatex">\(\mathbb{F}\)</span> 和 <span class="arithmatex">\(u \in \mathbb{F}\)</span>，子集 <span class="arithmatex">\(H \subset \mathbb{F}\)</span>。想要检验的是多项式 <span class="arithmatex">\(p\)</span> 在 <span class="arithmatex">\(H^l\)</span> 上求值然后全加起来是不是等于 <span class="arithmatex">\(u\)</span>。在这里并没有 witness，那 verifier 到底想知道啥？他自己其实本来就可以验证，因为你自己把所有的值都加起来算算就知道了。但是他并不想花这么多时间，他只是想借助 prover 确认这件事是真的。</p>
+<p>这个协议是这样工作的：</p>
+<p><img alt="sumcheck_protocol" src="../assets/sumcheck1.png" /></p>
+<p>简单来说就是 prover 负责把后面的 <span class="arithmatex">\(l-1\)</span> 个变量都枚举了，相当于把多项式后面的变量都消除了，留给 verifier 自己枚举第一个变量所有可能的取值，然后检查和是不是 <span class="arithmatex">\(u\)</span>。</p>
+<p>这样 verifier 肯定不能轻信，否则 soundness 就炸了。verifier 继续出题，那我把多项式的第一个值固定（这就是我的第一个 challenge！），这样就是一个新的多项式了，现在压力回到 prover 这边，你继续递归地用这个多项式做一下 sumcheck。</p>
+<p>这样做显然 verifier 的计算压力减小了，主要的计算由 prover 承担，同时 verifier 也能确定 prover 没有骗人。同时协议的 communication cost 也变小了，因为我们只传递单变量的多项式。</p>
+<p>completeness 非常显然，如果 instance 本身就在 language 里，没有任何可能 verifier 会 reject。</p>
+<p>soundness 建立在『域上多项式的根的数量不会超过 degree』这一事实上。即使prover 提供了一个假的多项式骗过了第一道检查（求和之后确实等于 <span class="arithmatex">\(u\)</span>），verifier 想要验证你提供的多项式和真实的多项式确实是同一个多项式，它的方法是在随机一个点上取值，因为随机一个点两个多项式取值相等的概率其实就是随机点是两个多项式的差的根的概率，而这个不超过 <span class="arithmatex">\(\frac{d}{|\mathbb{F}|}\)</span>。如果不巧随机取值两个多项式的值就是一样的，那么递归的子问题就在 language 中，所以 verifier 就没办法分辨了；但是如果取值不同，那么递归的子问题的 instance 也不在 language 里，这样就很容易使用归纳法了。最终可以说明 soundness error（也就是当 instance 不在 language 的时候 verifier 依然 accept 的概率）不超过  <span class="arithmatex">\((l-1)d/|\mathbb{F}|\)</span>。</p>
+<p>Sumcheck protocol will finally reduce the claim into a single point value of the polynomial, normally V knows the polynomial <span class="arithmatex">\(p\)</span> in advance, so it doesn't need P to send the coefficients, which brings lots of communication cost. While in GKR protocol, V doesn't know the exact coefficients of <span class="arithmatex">\(p\)</span>, but it knows the formula form of <span class="arithmatex">\(p\)</span>, so V requires some components of <span class="arithmatex">\(p\)</span> and then calculate the value by itself.</p>
+<p>Here is the parameters of sumcheck protocol:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Parameters</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Prover Complexity</td>
+<td style="text-align: center;"><span class="arithmatex">\(O(\|H\|^l)\)</span> ops and <span class="arithmatex">\(p\)</span>-evaluation</td>
+</tr>
+<tr>
+<td style="text-align: center;">Soundness</td>
+<td style="text-align: center;"><span class="arithmatex">\(ld/\|\mathbb{F}\|\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">Communication Complexity</td>
+<td style="text-align: center;"><span class="arithmatex">\(O(ld)\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">Verifier Complexity</td>
+<td style="text-align: center;"><span class="arithmatex">\(O(ld)\)</span> ops</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-conp-is-in-ip">2 coNP Is in IP<a class="headerlink" href="#2-conp-is-in-ip" title="Permanent link">&para;</a></h3>
+<p>coNP 里的语言满足：其补语言在 NP 中。所以概念其实很好理解。比如说图同构显然是 NP 的，你给我两个图作为 instance 和一个映射作为 witness，我很简单就能验证你说的对不对。但是图不同构就没有这么简单，你很难让我确信你给我的两个图不同构。显然图不同构的补语言就是图同构，所以图不同构是 coNP 的。</p>
+<p>现在我们希望得到下图这样的关系：<br />
+![[coNP1.png.png]]<br />
+这就需要我们找到一个 coNP-Complete 的语言，然后说明它是 IP 的就可以了。</p>
+<p>比较经典的一个 NP-Complete 的问题是 3-SAT 问题（一些 clause 取交集，问能否使得这个逻辑表达式为真），它的补问题 3-UNSAT 问题就是一个 coNP-Complete 问题。</p>
+<p>挑选这个逻辑表达式相关的问题是有用意的，因为逻辑表达式很容易用加减乘法拓展到域 <span class="arithmatex">\(\mathbb{F}\)</span> 上进而变成一个 sumcheck 问题。</p>
+<p>比如 <span class="arithmatex">\(x \wedge y\)</span> 可以变成 <span class="arithmatex">\(x \cdot y\)</span>，<span class="arithmatex">\(x \vee y\)</span> 可以变成 <span class="arithmatex">\(1 - (1 - x)(1 - y)\)</span>。这样的话我们就可以把一个逻辑表达式变成一个多项式，而且多项式的阶不超过 <span class="arithmatex">\(3m\)</span>，其中 <span class="arithmatex">\(m\)</span> 是 clause 的个数。</p>
+<p>巧妙的是，如果一个逻辑表达式是不可能满足的（UNSAT），就意味着它对应的多项式在 <span class="arithmatex">\(\{0,1\}^l\)</span> 上求和依然是 0。这样的话就变成了一个 sumcheck 问题。</p>
+<p>这里我们需要一个域，所以就找 <span class="arithmatex">\(\mathbb{Z}_p\)</span> 即可，只要 <span class="arithmatex">\(2^l &lt; p &lt; 2^{l+1}\)</span>。</p>
+<p>最终的 protocol 如下：<br />
+![[coNP2.png.png]]</p>
+<h3 id="3-gkr-protocol">3 GKR Protocol<a class="headerlink" href="#3-gkr-protocol" title="Permanent link">&para;</a></h3>
+<p>GKR is named by initials of three authors' names </p>
+<p>这个协议一般表述为一个运算门阵列求值问题：给定一系列 add 门和 mul 门，分别对应加法和乘法；门是层级排列的，第 <span class="arithmatex">\(i\)</span> 层门的输入来自两个 <span class="arithmatex">\(i+1\)</span> 层的门，输出输送到第 <span class="arithmatex">\(i-1\)</span> 层的一个门。最终 prover 想要证明某个输入 <span class="arithmatex">\(\vec{x}\)</span> 得到的输出为 <span class="arithmatex">\(\vec{y}\)</span>。</p>
+<p>这个问题也是没有 witness 的，verifier 自身就可以检验输出是不是对的，只需要自行带入运算即可。这里我们想要实现的是 prover 可以比较高效的运行同时 verifier 可以超级高效的运行（输入规模的对数级别）。这个听起来非常不可思议，因为一个人居然连问题本身都没看全就能从别人那里验证结果的正确性。Just like the PCP theorem states, it's possible to verify a proof of <span class="arithmatex">\(n\)</span> bits without seeing all <span class="arithmatex">\(n\)</span> bits but only <span class="arithmatex">\(O(logn)\)</span> bits, with high probability to be correct.</p>
+<p>首先我们介绍一个引理：</p>
+<div class="admonition note">
+<p class="admonition-title">Schwarz Zippel Lemma</p>
+<p><span class="arithmatex">\(p \in \mathbb{F}[X_1, \cdots X_l],\;\; \mathcal{S} \subset \mathbb{F}\)</span>，那么随机选一个 <span class="arithmatex">\(\vec{x}\)</span> 使得多项式取值为 0 的概率 <span class="arithmatex">\(\text{Pr} \le \frac{\deg p}{|\mathcal{S}|}\)</span>。</p>
+</div>
+<p>To utilize sumcheck protocol, we need to transform wire value function into summation form. To achieve this, let function <span class="arithmatex">\(add\)</span> and <span class="arithmatex">\(mul\)</span> be two indicator functions, which means if there is an <em>add</em> gate with input index <span class="arithmatex">\(\vec{i}, \vec{j}\)</span> and output index <span class="arithmatex">\(\vec{c}\)</span>, then function <span class="arithmatex">\(add(i,j,c) = 1\)</span>, otherwise the value is <span class="arithmatex">\(0\)</span>; the idea for <span class="arithmatex">\(mul\)</span> is the same.</p>
+<p>In this way, for an output <span class="arithmatex">\(w_i(c)\)</span>, we can iterate all the possible combination of input positions <span class="arithmatex">\(w_{i+1}(a), w_{i+1}(b)\)</span>, which leads to a summation form:</p>
+<div class="arithmatex">\[
+w_i(\vec{c}) = \sum_{\vec{a}, \vec{b}} add(\vec{a}, \vec{b}, \vec{c}) \cdot (w_{i+1}(\vec{a}) + w_{i+1}(\vec{b})) + mul(\vec{a}, \vec{b}, \vec{c}) \cdot (w_{i+1}(\vec{a}) \cdot w_{i+1}(\vec{b}))
+\]</div>
+<p>So the sumcheck form is:</p>
+<div class="arithmatex">\[
+w_i(\vec{c}) = \sum_{\vec{a}, \vec{b}} p(\vec{a}, \vec{b})
+\]</div>
+<p>The protocol works in three steps.</p>
+<p><strong>Firstly</strong>, the final output is a vector, but all the tools that we have are about polynomial, so we construct MLE for wire value <span class="arithmatex">\(w\)</span> and for output within the instance, <span class="arithmatex">\(y\)</span>. <span class="arithmatex">\(y\)</span> is known to both sides, so V chooses a random point <span class="arithmatex">\(r_0\)</span>, and our first claim is: <span class="arithmatex">\(w(r_0) = y(r_0)\)</span>, where <span class="arithmatex">\(w, y\)</span> are MLEs.</p>
+<p><strong>The second step</strong> is to use sumcheck protocol to prove our claim <span class="arithmatex">\(w(r_i) = y(r_i) = v_{i}\)</span>.</p>
+<p>Finally sumcheck protocol will reduce the claim to a single point value of <span class="arithmatex">\(p\)</span>. Say V chooses <span class="arithmatex">\(\vec{r_a}, \vec{r_b}\)</span> as random point and P need to send back <span class="arithmatex">\(A = w_{i+1}(\vec{r_a})\)</span> and <span class="arithmatex">\(B = w_{i+1}(\vec{r_b})\)</span>. Then V can calculate <span class="arithmatex">\(p(\vec{r_a}, \vec{r_b})\)</span> by itself.</p>
+<p>Then how to make sure P sends the correct value for <span class="arithmatex">\(A = w_{i+1}(\vec{r_a})\)</span> and <span class="arithmatex">\(B = w_{i+1}(\vec{r_b})\)</span>? So we naturally get another two claims about next level's wire value. But if so, one claim reduced to two claims, two claims reduced to four claims, so on and so forth, there will be too many claims. Thus we need to reduce two claims to single claim.</p>
+<p><strong>The third step</strong>, reduce two claims to one claim. <span class="arithmatex">\(\vec{a}\)</span> and <span class="arithmatex">\(\vec{b}\)</span> are two points, then <span class="arithmatex">\(L(t) = \vec{a} \cdot t + \vec{b} \cdot (1 - t)\)</span> is a segment (or line) where <span class="arithmatex">\(t\)</span> is the only variable. P sends <span class="arithmatex">\(Q(t) = w_{i+1}(Q(t))\)</span> to V, because <span class="arithmatex">\(Q(t)\)</span> only has one variable and of degree <span class="arithmatex">\(l_{i+1}\)</span> so won't cost too much for communication. V checks if <span class="arithmatex">\(Q(0) == A\)</span> and <span class="arithmatex">\(Q(1) == B\)</span>, if so V again choose a random value <span class="arithmatex">\(t\)</span> in <span class="arithmatex">\(\mathbb{F}\)</span>, the reduced claim is then: <span class="arithmatex">\(w_{i+1}(L(t)) == Q(t) = v_{i+1}\)</span>. Here the RHS, <span class="arithmatex">\(Q(t)\)</span>, and <span class="arithmatex">\(L(t)\)</span> are calculated by both P and V, so we go back to second step with one more level down: <span class="arithmatex">\(w_{i+1}(r_{i+1}) = v_{i+1}\)</span>.</p>
+<p>Finally and finally, protocol will reduce claim to final final claim <span class="arithmatex">\(w_{D}(r_D) = v_{D}\)</span>, and this could be easily verified since <span class="arithmatex">\(w_{D}\)</span> should be input and it's in instance so V already knows it.</p>
+<p>All parameters of full GKR protocol concluded as:</p>
+<p><img alt="gkr" src="../assets/zkp_gkr.png" /></p>
+<p>Completeness of this kind of protocol is actually obvious. If we have to give a rigorous proof, then we only need to show protocol reduces true claim to true claims and checks pass finally. Also note to use uniqueness of MLEs to show two MLEs of the same polynomial are identical. Identical MLEs must have equality even outside subset <span class="arithmatex">\(H\)</span>, so we can safely use the point in whole finite field.</p>
+<p>To show soundness, the idea is similar: we prove protocol reduces false claim to false claim or check fails, with high probability.</p>
+<h2 id="iop-pcp-and-r1cs">IOP, PCP and R1CS<a class="headerlink" href="#iop-pcp-and-r1cs" title="Permanent link">&para;</a></h2>
+<p>R1CS looks strange, the formal definition of this relation is:</p>
+<div class="arithmatex">\[
+R_{R1CS} = \Bigg\{  \big((A,B,C, x), w\big): z = x || w, Az \circ Bz = Cz \Bigg\}
+\]</div>
+<p>Here <span class="arithmatex">\(\circ\)</span> means element-wise product.</p>
+<p>This relation is NP-Complete and can be solved by holographic IOP with polynomial queries.</p>
+<p>R1CS protocol's prover complexity needs carefully analysing because <span class="arithmatex">\(d + 1 &gt; |H|\)</span>.</p>
+<p>The parameters concluded as:</p>
+<p><img alt="r1csp" src="../assets/zkp_r1csp.png" /></p>
+<h3 id="polynomial-commitment">Polynomial Commitment<a class="headerlink" href="#polynomial-commitment" title="Permanent link">&para;</a></h3>
+<p>Now we still need the help of oracle, which will answer the queries of V. Since all the queries are about polynomial evaluation, we can replace oracle with polynomial commitment scheme.</p>
+<p>Compared to normal message commitment scheme, polynomial commitment involves another IP Eval used to prove the commited function <span class="arithmatex">\(f\)</span>'s evaluation <span class="arithmatex">\(f(y) = z\)</span> is correct.</p>
+<p>Design such protocol for arbitrary polynomial would be difficult, but for MLE polynomial, we can represent <span class="arithmatex">\(f\)</span> as <span class="arithmatex">\(N\)</span> coefficients corresponding to different terms. A good property of MLE is that for any input, there will only be one term to be <span class="arithmatex">\(1\)</span>, while the others being <span class="arithmatex">\(0\)</span>.</p>
+<p>The proof size (aka communication complexity) also matters.</p>
+<h2 id="side-notes-about-complexity-class">Side Notes About Complexity Class<a class="headerlink" href="#side-notes-about-complexity-class" title="Permanent link">&para;</a></h2>
+<p>(a good reference complexity zoo <a href="https://complexityzoo.net/">https://complexityzoo.net/</a>)</p>
+<p><strong>IP = PSPACE</strong> (The class of decision problems solvable by a Turing machine in polynomial space).</p>
+<p><strong>IOP, PCP = NEXP</strong> (solvable by nondet. Turing machine in <span class="arithmatex">\(2^{n^{O(1)}}\)</span> time)</p>
+<p>This lecture note introduces PCP theorem and approximation gaps: <a href="https://courses.cs.washington.edu/courses/cse533/05au/pcp-theorem.pdf">https://courses.cs.washington.edu/courses/cse533/05au/pcp-theorem.pdf</a>.</p>
+<p>We introduce IOP because the oracle part could be replaced by some special mechanism which will be discussed later, and IOP is easier to understand and use.</p>
+<p>Now let's focus on a new problem Rank 1 Constraint Systems (R1CS), which is a fundamentally important problem simply solvable with IOP protocol.</p>
+<h2 id="nizk">NIZK<a class="headerlink" href="#nizk" title="Permanent link">&para;</a></h2>
+<p>NIZK without CRS (Common Reference String) is boring because it's in BPP complexity class. So we will only discuss NIZK with CRS.</p>
+<p>A non-interactive prof system for an NP relation R consists of three <em>efficient</em> algorithms (K, P, V) which are:</p>
+<ul>
+<li>the CRS generator K(1^\lambda) \rightarrow \sigma. K may take |x| or x as input</li>
+<li>the prover P(\sigma, x, w) \rightarrow \pi</li>
+<li>the verifier V(\sigma, x, \pi) \rightarrow b</li>
+</ul>
+<p>The security definition of non-interactive proofs also have three properties:</p>
+<ul>
+<li>Completeness: <span class="arithmatex">\(\forall (x, w) \in R, \text{Pr}[b = 1] = 1\)</span>. So if $(x, w) in relation, V always accepts.</li>
+<li>Soundness: <span class="arithmatex">\(\forall x \notin L_R, \text{Pr}[b = 1] \approx 0\)</span>. So if <span class="arithmatex">\(x\)</span> not in language, V approxiamately always rejects.</li>
+<li>ZK: Exists two efficient simulators <span class="arithmatex">\((S_1, S_2)\)</span> s.t. any adversary <span class="arithmatex">\(A\)</span> producing <span class="arithmatex">\((x, w) \in R\)</span>, we have </li>
+</ul>
+<div class="arithmatex">\[
+\{(\sigma, \pi): \sigma \leftarrow K(1^\lambda), (x, w) \leftarrow A(\sigma), \pi \leftarrow P(\sigma, x, w)\} = \{(\sigma, \pi): \sigma \leftarrow S_1(1^\lambda), (x, w) \leftarrow A(\sigma), \pi \leftarrow S_2(\sigma, x, w)\}
+\]</div>
+<p>The notebable difference is that we now have two simuilators for ZK, the one produces CRS, and the other produces P's message. The important note is that simulator may put a trapdoor into CRS, so V's access to CRS would be manipulated by simulator. Also these are single-theorem definitions, meaning that there are no security guarantees reusing CRS for many <span class="arithmatex">\(x\)</span>.</p>
+<p>Also, in definition of knowledge soundness, it needs two extractors, the one outputs CRS and an extraction trapdoor <span class="arithmatex">\(\xi\)</span>; the other outputs witness. But the CRS has to be indistinguishable from normal CRS.</p>
+<p>With the help of trapdoor, simulation trapdoors let us produce proofs without knowing witness, breaking soundness; extraction trapdoors let us extract witness from proof, breaking ZK. So it's a big problem that how can we trust the CRS?</p>
+<p>We have several approaches to mitigate the risks.</p>
+<div class="admonition danger">
+<p class="admonition-title">TBD</p>
+</div>
+<p>Now let's look at an example of NIZK protocol: Boolean Circuit Protocol.</p>
+<p>A boolean circuits consists of several boolean gates, WLOG, we only uses NAND gates. The instance is the circuit description, and the witness is satisfying wire values.</p>
+<p>Consider function <span class="arithmatex">\(f(a, b, c) = (a NAND b) == c\)</span>, it evaluates to <span class="arithmatex">\(1\)</span> iff <span class="arithmatex">\(a + b + 2c - 2 \in \{0, 1\}\)</span>. So the proof idea is that we commit to each wire value, then prove each wire value is valid (i.e. $\in {0, 1}), then prove <span class="arithmatex">\(a + b + 2c - 2 \in \{0, 1\}\)</span> for each gates.</p>
+<p>Since we cannot directly send wire value to V to check, so we need a commitment scheme with NI bit proofs.</p>
+<p>First we need to introduce Boneh-Goh-Nissim Cryptosystem.</p>
+<p>BGN protocol is based on two symmetric bilinear groups <span class="arithmatex">\(\mathbb{G}, \mathbb{G}_T\)</span> of order <span class="arithmatex">\(n = pq\)</span> where <span class="arithmatex">\(p,q\)</span> are primes, and <span class="arithmatex">\(n\)</span> is very large.</p>
+<p>Public parameter samples <span class="arithmatex">\(B \in \mathbb{N} &lt;&lt; p\)</span>, and all the original messages should be in <span class="arithmatex">\([B]\)</span>.</p>
+<p>Commit scheme is given a message <span class="arithmatex">\(m \in \{0, \cdots, B - 1\}\)</span> and output <span class="arithmatex">\(C = m \cdot G + r \cdot H\)</span>, where <span class="arithmatex">\(r\)</span> is sampled in <span class="arithmatex">\(\mathbb{Z}_n\)</span>.</p>
+<p>This commit scheme has two modes: binding and hiding.</p>
+<p>For binding mode, we have <span class="arithmatex">\(G \leftarrow \mathbb{G}, s \leftarrow \mathbb{Z}_n^*, H = ps \cdot G\)</span>.</p>
+<p>For hiding mode, we have <span class="arithmatex">\(G \leftarrow \mathbb{G}, s \leftarrow \mathbb{Z}_n^*, H = s \cdot G\)</span></p>
+<p>The subgroup hiding assumption holds if binding setup and hiding setup are computationally indistinguishable.</p>
+<p>If we are using hiding mode, since <span class="arithmatex">\(H\)</span> is equivalently sampled randomly, the commitment is perfectly hiding, since <span class="arithmatex">\(C = m \cdot G + r \cdot H\)</span> is uniformly distributed. And by subgroup hiding assumption, biding mode still gives computational hiding.</p>
+<p>If we are using binding mode, consider <span class="arithmatex">\(e(C, q \cdot G) = m \cdot e(G, G) + qr \cdot e(H, G) = m \cdot e(G, G) + pqrs \cdot e(G, G) = m \cdot e(G, G)\)</span>. So if there is another message <span class="arithmatex">\(m'\)</span> breaking binding property, i.e. <span class="arithmatex">\(m \cdot G + r \cdot H = m = m' \cdot G + r' \cdot H\)</span>, then by the same reasoning we have <span class="arithmatex">\(e(C, q \cdot G) = m' \cdot e(G, G)\)</span>. So we have <span class="arithmatex">\((m - m') e(G, G) = 0\)</span>, which means <span class="arithmatex">\(m \equiv m'\)</span>. Since <span class="arithmatex">\(B \lll p\)</span>, <span class="arithmatex">\(m = m'\)</span>.</p>
+<p>Again, by subgroup hiding assumption, hiding mode should also give computational binding.</p>
+<p>Now we need to figure out how to prove the committed value is <span class="arithmatex">\(0\)</span> or <span class="arithmatex">\(1\)</span>. If <span class="arithmatex">\(C\)</span> is the commitment of <span class="arithmatex">\(m\)</span>, then <span class="arithmatex">\(C - G\)</span> would be the commitment of <span class="arithmatex">\(m - 1\)</span>. If <span class="arithmatex">\(m = 0, 1\)</span>, then <span class="arithmatex">\(m(m-1) = 0\)</span>.</p>
+<p>Pairing is analogous to "multiplication", so we can think about what <span class="arithmatex">\(e(C, C - G)\)</span> would be.</p>
+<div class="arithmatex">\[
+e(C, C - G) = e(mG + rH, (m - 1)G + rH) = m(m-1) \cdot e(G,G) + r(2m-1) \cdot e(G, H) + r^2 \cdot e(H, H) = r(2m-1) \cdot e(G, H) + r^2 \cdot e(H, H)
+\]</div>
+<p>So we can let V checks if <span class="arithmatex">\(e(C, C - G) == r(2m-1) \cdot e(G, H) + r^2 \cdot e(H, H)\)</span>. To achieve this, we can simply let P send <span class="arithmatex">\(\pi = r(2m - 1) \cdot G + r^2 \cdot H\)</span>, and let V calculates <span class="arithmatex">\(e(\pi, H)\)</span>.</p>
+<p>Completeness is obvious by rules of bilinearity and symmetry of group operations.</p>
+<p>Soundness is assured, we will show that <span class="arithmatex">\(m\)</span> could be unquely determined and <span class="arithmatex">\(m(m-1)=0\)</span> if using binding setup.</p>
+<p>Given the commitment <span class="arithmatex">\(C\)</span>, obviously there exists <span class="arithmatex">\(m_* \in \mathbb{Z}_n\)</span> s.t. <span class="arithmatex">\(C = m_* \cdot G\)</span>. Then let <span class="arithmatex">\(m = m_* \mod p\)</span> and let <span class="arithmatex">\(r = \frac{m_* - m}{ps} \mod n\)</span>, then with simple calculation we know <span class="arithmatex">\(C = m \cdot G + r \cdot H\)</span>. So we have shown <span class="arithmatex">\(m\)</span> could be uniquely determined.</p>
+<p>Now we need to show such <span class="arithmatex">\(m\)</span> satisfies <span class="arithmatex">\(m(m-1) = 0\)</span>.</p>
+<p>From V's view, what he knows is that <span class="arithmatex">\(e(C, C - G) = e(\pi, H)\)</span>. Note that under binding setup, <span class="arithmatex">\(q \cdot e(G', H) = 0\)</span>, we have <span class="arithmatex">\(q \cdot e(C, C - G) = q \cdot e(\pi, H) = 0\)</span>, also we know <span class="arithmatex">\(q \cdot e(C, C - G) = q m(m-1) \cdot e(G, G) + qr(2m-1) \cdot e(G, H) + qr^2 \cdot e(H, H)\)</span>, thus <span class="arithmatex">\(qm(m-1) \cdot e(G, G) = 0\)</span>, which means <span class="arithmatex">\(m(m-1) = 0\)</span>.</p>
+<p>It's almost knowledge sound, because as we have shown, we can extract unique <span class="arithmatex">\(m\)</span> from <span class="arithmatex">\(C\)</span> if we have trapdoor <span class="arithmatex">\(p\)</span> or <span class="arithmatex">\(q\)</span>, but it's not completely knowledge sound, since we can't extract <span class="arithmatex">\(r\)</span>.</p>
+<p>It's not ZK, but it has proof uniqueness (i.e. witness indistinguishable). Proof uniqueness means there only exists one possible <span class="arithmatex">\(\pi\)</span> for each <span class="arithmatex">\(C\)</span>. So as long as for each <span class="arithmatex">\(C\)</span>, P in our whole protocol sends the correct <span class="arithmatex">\(\pi\)</span>, it would be impossible to tell the difference between real <span class="arithmatex">\(\pi\)</span>'s distribution and our P's <span class="arithmatex">\(\pi\)</span> distribution since there is only one possible <span class="arithmatex">\(\pi\)</span>.</p>
+<p>So, with the help of bif proof protocol, we can construct our complete protocol for boolean satisfiability.</p>
+<p>Firstly, for each gate's output, we use bit commitment to commit to these wire values.</p>
+<p>Then for each gate <span class="arithmatex">\((i, j) \rightarrow k\)</span>, we need to prove <span class="arithmatex">\(m_i + m_j + 2m_k - 2 \in \{0, 1\}\)</span>, so we commit to <span class="arithmatex">\(m_i + m_j + 2m_k - 2 \in \{0, 1\}\)</span>, but we don't need to really compute the commitment, we can just use <span class="arithmatex">\(C_i + C_j + 2C_k - 2G\)</span>, and this could be calculated by V as well. Then for this gate, we compute corresponding <span class="arithmatex">\(\pi_{ijk} = r_{ijk}(2m_{ijk} - 1) \cdot G + r_{ijk}^2 \cdot H\)</span>, where <span class="arithmatex">\(r_{ijk}\)</span> is <span class="arithmatex">\(r_i + r_j + 2 r_k\)</span> and <span class="arithmatex">\(m_{ijk}\)</span> is <span class="arithmatex">\(m_i + m_j + 2m_k - 2\)</span>.</p>
+<p>What V checks is that each <span class="arithmatex">\(i\)</span> satisfies <span class="arithmatex">\(e(C_i, C_i - G) = e(\pi_i, H)\)</span> and for each gate the similar check <span class="arithmatex">\(e(C_{ijk}, C_{ijk} - G) = e(\pi_{ijk}, H)\)</span>.</p>
+<p>Completeness and knowledge soundness follow from completeness and soundness of bit proof system.</p>
+<p>Under hiding setup, we can easily construct two simulators, the one produces CRS with trapdoor <span class="arithmatex">\(p\)</span> or <span class="arithmatex">\(q\)</span>, and the other one firstly assume each wire value is <span class="arithmatex">\(0\)</span> and generates <span class="arithmatex">\(C_i, \pi_i\)</span>. Then for each gate <span class="arithmatex">\((i, j) \rightarrow k\)</span>, we open the commitment <span class="arithmatex">\(C_k\)</span> as <span class="arithmatex">\(C_k = 1 \cdot G + r' \cdot H\)</span>, we can do such opening because under hiding setup, it's equivocable with key <span class="arithmatex">\(s\)</span>, which means it can be opened to any messages by letting <span class="arithmatex">\(r' - r = \frac{m - m'}{s} \mod n\)</span>. Doing such opening let us easily calculate <span class="arithmatex">\(\pi_{ijk}\)</span>.</p>
+<p>ZK because each <span class="arithmatex">\(C_i\)</span> is uniformly distributed, and <span class="arithmatex">\(\pi, \pi_{ijk}\)</span> are uniquely determined by <span class="arithmatex">\(C_i\)</span> so it's indistinguishable.</p>
+<h2 id="r1cs-as-polynomial-divisibility">R1CS as polynomial divisibility<a class="headerlink" href="#r1cs-as-polynomial-divisibility" title="Permanent link">&para;</a></h2>
+<p>Let's define <em>Lagrange</em> polynomials on set <span class="arithmatex">\(H\)</span> defined for <span class="arithmatex">\(w \in H\)</span>, by:</p>
+<div class="arithmatex">\[
+L_{w, H}(x) = \Pi_{w' \in H \setminus \{w\}} \frac{x - w'}{w - w'}
+\]</div>
+<p>This polynomial has degree <span class="arithmatex">\(|H| - 1\)</span>, and it could be understood in this way: <span class="arithmatex">\(L_{w, H}(x) = (x == w)\)</span>.</p>
+<p>The <em>vanishing</em> polynomial on <span class="arithmatex">\(H\)</span> is defined as <span class="arithmatex">\(v_H(x) = \Pi_{w \in H}(x - w)\)</span>.</p>
+<p>It's called vanishing polynomial because if <span class="arithmatex">\(f(x) = 0, \; \forall x \in H\)</span>, then we have <span class="arithmatex">\(v_H(x) | f(x)\)</span>.</p>
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="__comments">Comments</h2>
+<script src="https://giscus.app/client.js"
+      data-repo="27rabbitlt/27rabbitlt.github.io"
+      data-repo-id="R_kgDOIUbPmg"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOIUbPms4CSV-C"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="dark_dimmed"
+      data-lang="en"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async>
+</script>
+<!-- Synchronize Giscus theme with palette -->
+<script>
+  var giscus = document.querySelector("script[src*=giscus]")
+
+  /* Set palette on initial load */
+  var palette = __md_get("__palette")
+  if (palette && typeof palette.color === "object") {
+    var theme = palette.color.scheme === "slate" ? "dark" : "light"
+    giscus.setAttribute("data-theme", theme) 
+  }
+
+  /* Register event handlers after documented loaded */
+  document.addEventListener("DOMContentLoaded", function() {
+    var ref = document.querySelector("[data-md-component=palette]")
+    ref.addEventListener("change", function() {
+      var palette = __md_get("__palette")
+      if (palette && typeof palette.color === "object") {
+        var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+        /* Instruct Giscus to change theme */
+        var frame = document.querySelector(".giscus-frame")
+        frame.contentWindow.postMessage(
+          { giscus: { setConfig: { theme } } },
+          "https://giscus.app"
+        )
+      }
+    })
+  })
+</script>
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../../from_oi_wiki/js/extra.js?v=16"></script>
+      
+        <script src="../../../js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

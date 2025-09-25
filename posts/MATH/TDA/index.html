@@ -1,0 +1,3432 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://27rabbitlt.github.io/posts/MATH/TDA/">
+      
+      
+        <link rel="prev" href="../AdvancedFormalLanguageTheory/">
+      
+      
+        <link rel="next" href="../AbstractAlgebra/">
+      
+      
+      <link rel="icon" href="../../../asset/black_circle_rabbit.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>TDA - RABBIT HOLE</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../from_oi_wiki/css/extra.css?v=13">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#topological-data-analysis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="RABBIT HOLE" class="md-header__button md-logo" aria-label="RABBIT HOLE" data-md-component="logo">
+      
+  <img src="../../../asset/black_circle_rabbit.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RABBIT HOLE
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              TDA
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/27rabbitlt/27rabbitlt.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    27rabbitlt pages
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../.." class="md-tabs__link">
+          
+  
+  
+  RABBIT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Crypto/" class="md-tabs__link">
+          
+  
+  
+  Crypto
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ALGO/" class="md-tabs__link">
+          
+  
+  
+  ALGO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../CPP/" class="md-tabs__link">
+          
+  
+  
+  CPP
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  MATH
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../MISC/working_setting/" class="md-tabs__link">
+          
+  
+  
+  MISC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../About/" class="md-tabs__link">
+          
+  
+  
+  About
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../NLP/LM-LSS/" class="md-tabs__link">
+          
+  
+  
+  NLP
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tournaments_hamiltonicity/sudakov-robust-dirac-graph/" class="md-tabs__link">
+          
+  
+  
+  tournaments_hamiltonicity
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../RSS_or_Sources/sources/" class="md-tabs__link">
+          
+  
+  
+  RSS_or_Sources
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../numexpr/" class="md-tabs__link">
+          
+  
+  
+  numexpr
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../pciedriver/init/" class="md-tabs__link">
+          
+  
+  
+  pciedriver
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../formal-language/chap1/" class="md-tabs__link">
+          
+  
+  
+  formal-language
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="RABBIT HOLE" class="md-nav__button md-logo" aria-label="RABBIT HOLE" data-md-component="logo">
+      
+  <img src="../../../asset/black_circle_rabbit.png" alt="logo">
+
+    </a>
+    RABBIT HOLE
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/27rabbitlt/27rabbitlt.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    27rabbitlt pages
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    RABBIT
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            RABBIT
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ME
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Crypto
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Crypto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Crypto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Crypto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Crypto/Zero%20Knowledge%20Proof/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Zero Knowledge Proof
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Crypto/RSA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RSA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Crypto/Further_Read/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Further_Read
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Crypto/Certificate_and_Sign/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Certificate_and_Sign
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ALGO
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            ALGO
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ALGO
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/MST_survey/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MST_survey
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Competitive_Contest
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Competitive_Contest
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/Competitive_Contest/KMP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    KMP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/Competitive_Contest/Minimize_The_Number_of_Swaps_to_Sort_List/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Minimize_The_Number_of_Swaps_to_Sort_List
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/Competitive_Contest/Sieve%20of%20Euler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sieve of Euler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/Competitive_Contest/Strongly%20Connected%20Component/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Strongly Connected Component
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/Competitive_Contest/DSU_On_Tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DSU_On_Tree
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3_6" id="__nav_3_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    CF
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            CF
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/Competitive_Contest/CF/cf1672H/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    cf1672H
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/RandomizedIncrementalAlgo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RandomizedIncrementalAlgo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/Dilworth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dilworth
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/nearest_pair/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    nearest_pair
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/scanning_line/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    scanning_line
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/segment_tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    segment_tree
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGO/NetworkFlow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    NetworkFlow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    CPP
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            CPP
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CPP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CPP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CPP/CRTP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CRTP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CPP/Further%20Read/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Further Read
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UB
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            UB
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CPP/UB/infinite_loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    infinite_loop
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CPP/Concurrency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Concurrency
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CPP/memory_order/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    memory_order
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    MATH
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            MATH
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MATH
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FFT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FFT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Interesting%20Puzzle%20or%20Paper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Interesting Puzzle or Paper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    MISCS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            MISCS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MISCS/Continuous%2C%20all%20direction%20derivative%20exist%20but%20not%20differentiable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Continuous, all direction derivative exist but not differentiable
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Combinatorial_Maths
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            Combinatorial_Maths
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Combinatorial_Maths/Burnside%27s_Lemma/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Burnside's_Lemma
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Linear_Algebra
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            Linear_Algebra
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linear_Algebra/Chpater%203/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chpater 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Linear_Algebra/theorems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    theorems
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AMC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AMC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AdvancedFormalLanguageTheory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AdvancedFormalLanguageTheory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    TDA
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    TDA
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-topology-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      0 Topology basics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0 Topology basics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-open-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.1 Open Sets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.2 Base
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-closure-boundary-interior-and-limit-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.3 Closure, Boundary, Interior, and Limit Point
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-homotopy-同伦" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Homotopy 同伦
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-homology-同调" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Homology 同调
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Persistence
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Persistence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wasserstein-distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wasserstein Distance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interleaving-distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interleaving Distance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-reeb-graph-and-mapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Reeb Graph and Mapper
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Reeb Graph and Mapper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reeb-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reeb Graph
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-topospace-to-mathbbr" class="md-nav__link">
+    <span class="md-ellipsis">
+      From Topospace to \(\mathbb{R}\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#topological-mapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Topological Mapper
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AbstractAlgebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AbstractAlgebra
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_11" id="__nav_5_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Complexity
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_11">
+            <span class="md-nav__icon md-icon"></span>
+            Complexity
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Complexity/Ladner%20Theorem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ladner Theorem
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GCA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GCA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Complex_Analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Complex_Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_15" id="__nav_5_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ODE
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_15">
+            <span class="md-nav__icon md-icon"></span>
+            ODE
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ODE/eigenvalue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    eigenvalue
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    MISC
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            MISC
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MISC/working_setting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    working_setting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MISC/latex_tips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    latex_tips
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MISC/eride_worktips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    eride_worktips
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MISC/WindowsSettings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    WindowsSettings
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MISC/books/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    books
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            About
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../About/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../About/Bachelor%20Courses%20Description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bachelor Courses Description
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../About/Master%20Courses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Master Courses
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    NLP
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            NLP
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../NLP/LM-LSS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LM-LSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    tournaments_hamiltonicity
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            tournaments_hamiltonicity
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tournaments_hamiltonicity/sudakov-robust-dirac-graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    sudakov-robust-dirac-graph
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    RSS_or_Sources
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            RSS_or_Sources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RSS_or_Sources/sources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    sources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    numexpr
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            numexpr
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../numexpr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    numexpr
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../numexpr/refcount/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    refcount
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    pciedriver
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            pciedriver
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pciedriver/init/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    init
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    formal-language
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            formal-language
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../formal-language/chap1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    chap1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../formal-language/chap2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    chap2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-topology-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      0 Topology basics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0 Topology basics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-open-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.1 Open Sets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.2 Base
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-closure-boundary-interior-and-limit-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      0.3 Closure, Boundary, Interior, and Limit Point
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-homotopy-同伦" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Homotopy 同伦
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-homology-同调" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Homology 同调
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Persistence
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Persistence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wasserstein-distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wasserstein Distance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interleaving-distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interleaving Distance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-reeb-graph-and-mapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Reeb Graph and Mapper
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Reeb Graph and Mapper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reeb-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reeb Graph
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from-topospace-to-mathbbr" class="md-nav__link">
+    <span class="md-ellipsis">
+      From Topospace to \(\mathbb{R}\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#topological-mapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Topological Mapper
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="topological-data-analysis">Topological Data Analysis<a class="headerlink" href="#topological-data-analysis" title="Permanent link">&para;</a></h1>
+<h2 id="0-topology-basics">0 Topology basics<a class="headerlink" href="#0-topology-basics" title="Permanent link">&para;</a></h2>
+<h3 id="01-open-sets">0.1 Open Sets<a class="headerlink" href="#01-open-sets" title="Permanent link">&para;</a></h3>
+<p>Topology is basically about shapes and distances. We care about how different two shapes are and how far two points/elements are. Instead of using distance directly, we use <em>open set</em> as our basic building block.</p>
+<p>The topology can be seen as how we define open sets. A topological space is a set <span class="arithmatex">\(X\)</span> together with a subset family <span class="arithmatex">\(O\)</span> of which each subset is called an open set. <span class="arithmatex">\(O\)</span> needs to satisfy three properties:</p>
+<ul>
+<li><span class="arithmatex">\(\emptyset \in O, X \in O\)</span></li>
+<li><span class="arithmatex">\(\bigcap_{i}^n O_i \in O\)</span>, where <span class="arithmatex">\(O_i \in O\)</span>.</li>
+<li>For every <span class="arithmatex">\(S \subset O\)</span>, <span class="arithmatex">\(\bigcup S \in O\)</span>.</li>
+</ul>
+<p>We can conclude that open sets have closure under finite intersection and arbitrary union. This definition is consistent with the intuition we already got in middle school: infinite intersection of open intervals <span class="arithmatex">\(\bigcap_n^\infty I_n\)</span>, where <span class="arithmatex">\(I_n = (0-\frac{1}{n}, 1+\frac{1}{n})\)</span> is a close interval <span class="arithmatex">\([0,1]\)</span>.</p>
+<h3 id="02-base">0.2 Base<a class="headerlink" href="#02-base" title="Permanent link">&para;</a></h3>
+<p>Base <span class="arithmatex">\(\mathcal{B}\)</span> is a set of open sets such that for any open set <span class="arithmatex">\(U\)</span> we can find a subset <span class="arithmatex">\(\mathcal{B}'\)</span> of <span class="arithmatex">\(\mathcal{B}\)</span> satisfying <span class="arithmatex">\(U = \bigcup_{B \in \mathcal{B}'}B\)</span>, where <span class="arithmatex">\(\mathcal{B}' \subset \mathcal{B}\)</span>.</p>
+<p>So the base is a subset of <span class="arithmatex">\(O\)</span> but can construct every open set by appropriate union.</p>
+<p>For our old friend Euclidean space <span class="arithmatex">\(R\)</span>, we can give a base using rational number and open balls: <span class="arithmatex">\(\mathcal{B} = \{B(x, 1/p) | x \in \mathbb{Q}, p \in \mathbb{N}_+\}\)</span></p>
+<h3 id="03-closure-boundary-interior-and-limit-point">0.3 Closure, Boundary, Interior, and Limit Point<a class="headerlink" href="#03-closure-boundary-interior-and-limit-point" title="Permanent link">&para;</a></h3>
+<p><em>Closure</em> of a set <span class="arithmatex">\(A\)</span> is the smallest (or the intersection of all) close sets that contains <span class="arithmatex">\(A\)</span>.</p>
+<p><em>Interior</em> of a set <span class="arithmatex">\(A\)</span> is the biggest (or the union of all) open sets that is contained in <span class="arithmatex">\(A\)</span>.</p>
+<p><em>Boundary</em> is closure mod interiror.</p>
+<p>A point <span class="arithmatex">\(p\)</span> is <em>limit point</em> of a set <span class="arithmatex">\(A\)</span> if every open set that contains <span class="arithmatex">\(p\)</span> intersects with <span class="arithmatex">\(A\)</span>. </p>
+<p>Note that this definition of boundary is different from what we will see of the simplex chain. However the definition of boundary of manifold is consistent with that of simplex chain. The boundary of a <span class="arithmatex">\(d\)</span>-dim manifold is all the points whose neighbourhood is homeomorphic to half-ball <span class="arithmatex">\(H^d\)</span>, while interiror is these whose neighbourhood is homeomorphic to an open ball <span class="arithmatex">\(B^d\)</span>.</p>
+<h2 id="1-homotopy-同伦">1 Homotopy 同伦<a class="headerlink" href="#1-homotopy-同伦" title="Permanent link">&para;</a></h2>
+<p>Homotopy is actually between two maps. A <em>homotopy</em> connecting between maps <span class="arithmatex">\(g, h: X \rightarrow Y\)</span> is a map <span class="arithmatex">\(H: X \times [0,1] \rightarrow Y\)</span> such that <span class="arithmatex">\(H(\cdot, 0) = g, H(\cdot, 1) = h\)</span>. In this case <span class="arithmatex">\(g\)</span> and <span class="arithmatex">\(h\)</span> are called homotopic.</p>
+<p>However, usually we care about the equivalence relation induced by this notion of homotopy. Two sapces <span class="arithmatex">\(X, Y\)</span> are homotopy equivalent if there exist maps <span class="arithmatex">\(g: X \rightarrow Y, h: Y \rightarrow X\)</span> such that:</p>
+<ul>
+<li><span class="arithmatex">\(h \circ g\)</span> is homotopic to <span class="arithmatex">\(\text{id}_X\)</span>, and</li>
+<li><span class="arithmatex">\(g \circ h\)</span> is homotopic to <span class="arithmatex">\(\text{id}_Y\)</span>.</li>
+</ul>
+<p>Where <span class="arithmatex">\(\text{id}_X\)</span> is the identity map from <span class="arithmatex">\(X\)</span> to <span class="arithmatex">\(X\)</span>.</p>
+<p>This definition is a bit abstract thus difficult to intuitively think about. Another usefull definition is deformation retract.</p>
+<p>Let <span class="arithmatex">\(A \subset X\)</span>, a <em>deformation retract</em> of X onto <span class="arithmatex">\(A\)</span> is a map <span class="arithmatex">\(R: X \times [0,1] \rightarrow X\)</span> such that:</p>
+<ul>
+<li><span class="arithmatex">\(R(\cdot, 0) = \text{id}_X\)</span></li>
+<li><span class="arithmatex">\(R(x,1) \in A, \forall x \in X\)</span></li>
+<li><span class="arithmatex">\(R(a,t) = a, \forall a \in A, \forall t \in [0,1]\)</span></li>
+</ul>
+<p>If such deformation retractt of <span class="arithmatex">\(X\)</span> onto <span class="arithmatex">\(A\)</span> exists, we also say that <span class="arithmatex">\(A\)</span> is a deformation retract of <span class="arithmatex">\(X\)</span> and we can prove that <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(A\)</span> are homotopy equivalent.</p>
+<p>Another importance fact is that <span class="arithmatex">\(X, Y\)</span> are homotopy equivalent iff there exists a space <span class="arithmatex">\(Z\)</span> such that <span class="arithmatex">\(X, Y\)</span> are deformation retracts of <span class="arithmatex">\(Z\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Deformation Retract and Homotopy Equivalent</p>
+<p><span class="arithmatex">\(X, Y\)</span> are homotopy equivalent iff there exists a space <span class="arithmatex">\(Z\)</span> such that <span class="arithmatex">\(X, Y\)</span> are deformation retracts of <span class="arithmatex">\(Z\)</span>.</p>
+</div>
+<h2 id="2-homology-同调">2 Homology 同调<a class="headerlink" href="#2-homology-同调" title="Permanent link">&para;</a></h2>
+<p>代数拓扑课本啥也看不懂</p>
+<p>开始数洞</p>
+<div class="admonition note">
+<p class="admonition-title">Simplicial Map</p>
+<p>A <em>map</em> <span class="arithmatex">\(f: K_1 \rightarrow K_2\)</span> is called simplicial if it can be described by a vertex map <span class="arithmatex">\(g: V(K_1) \rightarrow V_(K_2)\)</span> s.t. <span class="arithmatex">\(f(\{v_0, \cdots, v_k\}) = \{g(v_0), \cdots, g(v_k)\}\)</span> and every simplex in <span class="arithmatex">\(K_1\)</span> is mapped to another simplex in <span class="arithmatex">\(K_2\)</span>.</p>
+</div>
+<p>Note that it doesn't require a k-dim simplex is mapped to also a <strong>k-dim</strong> simplex.</p>
+<p>Now we introduce a very famous theorem which has lots of interesting applications.</p>
+<div class="admonition note">
+<p class="admonition-title">Brouwer Fixed Point Theorem</p>
+<p>Let <span class="arithmatex">\(f: \mathbb{B}^d \rightarrow \mathbb{B}^d\)</span> be continuous, then f has a fixed point, that is, <span class="arithmatex">\(\exists x \in \mathbb{B}^d \implies f(x) = x\)</span>.</p>
+</div>
+<p>To prove this, we need some lemmas. The first one is:</p>
+<h2 id="3-persistence">3 Persistence<a class="headerlink" href="#3-persistence" title="Permanent link">&para;</a></h2>
+<p>For a simplicial filtration, each time when we add a new <span class="arithmatex">\(p\)</span>-dim simplex, it has to be either a creator or a destructor. A creator means it creates a new <span class="arithmatex">\(p\)</span>-dim cycle (hole) and a destructor means it destroys a <span class="arithmatex">\(p-1\)</span>-dim cycle (hole) since that cycle is the boundary of added simplex.</p>
+<p>But we need to notice that, here either a creator or a destructor creates or destroys not only a cycle, but instead a base cycle. So the rank increases or decreases by 1, which means the number different cycles actually doubles or shrinks to a half.</p>
+<p>This definition agrees with the definition of betti number and persistence diagram.</p>
+<p>It's easy to prove that a new simplex is either a creator or a destructor. So we can pair them in this way: each time we pair a destructor with the youngest still unpaired creator within the cycle it destroys. This algorithm avoids the ambiguity of exactly which cycle is destroyed, when there are two cycles in fact merged into one cycle after adding a destructor.</p>
+<p>What if all the creators within the destroyed cycle  have been paired? Then for each creator <span class="arithmatex">\(\rho\)</span>, we consider its paired destructor <span class="arithmatex">\(\tau\)</span>, we replace <span class="arithmatex">\(\rho\)</span> by  <span class="arithmatex">\(\rho + \partial \tau\)</span>. Then we get a new set of candidates. Repeat the previous precedure until we find an unpaired creator or if there is no more creator then the added cycle could not be a destructor (WHY?).</p>
+<p>Then for each pair of paired simplexes, we draw a point on the persistence diagram, with the coordinate <span class="arithmatex">\((f(\rho), f(\tau))\)</span>, where <span class="arithmatex">\(\rho\)</span> is the creator, <span class="arithmatex">\(\tau\)</span> is the destructor, <span class="arithmatex">\(f(\cdot)\)</span> is timestamp function. For technical reason, we add infinitely many points on diagonal.</p>
+<p>Given persistence diagrams, it's natural to think about how similar two diagrams are or can we define a distance metric for diagrams.</p>
+<p>Here we use bottleneck distance, which is defined as:</p>
+<div class="arithmatex">\[
+d_b(Dgm_p(F), Dgm_p(G)) = \inf_{\pi \in \Pi} \sup_{x \in Dgm_p(F)}  || x - \pi(x) ||_\infty
+\]</div>
+<p>We can prove if the diagrams have finite off-diagonal points then bottleneck distance is a metric.</p>
+<p>We want to prove the stability of simplicial filtrations.</p>
+<div class="admonition note">
+<p class="admonition-title">Stability for Simplicial Filtration Theorem</p>
+<p>Let <span class="arithmatex">\(f, g: K \rightarrow \mathbb{R}\)</span>  be simplex-wise monotone functions. Then <span class="arithmatex">\(d_b(Dgm_p(F_f), Dgm_p(F_g)) \le |f-g|_\infty\)</span>.</p>
+</div>
+<p>This theorem states that if we only change a little on the filtration level function <span class="arithmatex">\(f\)</span>, the diagram also changes a little, which implies stability.</p>
+<p>The idea behind the proof is that we construct a new function <span class="arithmatex">\(v(x, t) = t f(x) + (1 - t) g(x)\)</span>, then we draw diagrams for each timestamp <span class="arithmatex">\(t\)</span>, which forms a vineyard. The slope of each vine is at most <span class="arithmatex">\(|| f - g ||_\infty\)</span>.</p>
+<p>We can also generalize this to any triangulable topological space, which will be proved later using stability with respect to interleaving distance.</p>
+<h3 id="wasserstein-distance">Wasserstein Distance<a class="headerlink" href="#wasserstein-distance" title="Permanent link">&para;</a></h3>
+<p>Bottleneck distance cannot capture the number of "mismatching". Say if there is a relatively deviated point, then no matter how many other points, which are closer to diagonal, are added, the bottleneck distance won't change. We always only look at the longest edge in matching.</p>
+<p>To avoid this problem we can use Wasserstein distance.</p>
+<div class="arithmatex">\[ 
+d_{W, q}(Dgm_p(F), Dgm_p(G)) = \big[ \inf_{\pi \in \Pi} (\sum_{x \in Dgm_p(F)} (||x - \pi(x)||_\infty)^q) \big]^{1/q}
+\]</div>
+<p>Note that when <span class="arithmatex">\(q = \infty\)</span>, <span class="arithmatex">\(d_{W, \infty} = d_b\)</span>.</p>
+<p>We cannot guarantee stability of Wasserstein distance. Counterexamples can be found for simplicial complex and topological spaces. But if we restrict the function to be Lipschitz, we do have stability for Wasserstein distance.</p>
+<h3 id="interleaving-distance">Interleaving Distance<a class="headerlink" href="#interleaving-distance" title="Permanent link">&para;</a></h3>
+<p>Interleaving distance of two function levelset induced filtration is at most <span class="arithmatex">\(||f - g||_infty\)</span>.</p>
+<p>And using the theorem of stability with respect to interleaving distance, we have <span class="arithmatex">\(d_b(Dgm(U), Dgm(V)) = d_I (U, V)\)</span>. Note that here <span class="arithmatex">\(U, V\)</span> are homology group based persistence module, but not filtration. </p>
+<p>It's also obvious that the interleaving distance of homology goup is no greater than the interleaving distance of corresponding interleaving distance, because we can always construct a map for homology group based on the map for its corresponding simplexes.</p>
+<p>So:</p>
+<p><span class="arithmatex">\(d_b(Dgm(H_p U), Dgm(H_p V)) = d_I (H_p U, H_p V) \le d_I (U, V) \le || f - g ||_\infty\)</span>.</p>
+<p>A reason why we consider interleaving distance is that previously we only pay attention to stability of one space or simplicial complex with different filtrations induced by levelset of some function. However in real application, we only have point cloud, which may vary in size. Interleaving distance still gives some promise about stability even with different sizes.</p>
+<p>Based on this intuition, we consider Hausdoff distance.</p>
+<h2 id="5-reeb-graph-and-mapper">5 Reeb Graph and Mapper<a class="headerlink" href="#5-reeb-graph-and-mapper" title="Permanent link">&para;</a></h2>
+<h3 id="reeb-graph">Reeb Graph<a class="headerlink" href="#reeb-graph" title="Permanent link">&para;</a></h3>
+<p>The idea of Reeb graph is that we extract the 1-dimensional information out of the space <span class="arithmatex">\(X\)</span> using a function <span class="arithmatex">\(f: X \rightarrow \mathbb{R}\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Reeb Graph</p>
+<p><span class="arithmatex">\(X\)</span> is a topological space, and <span class="arithmatex">\(f\)</span> is a function from <span class="arithmatex">\(X\)</span> to <span class="arithmatex">\(\mathbb{R}\)</span>. Two points <span class="arithmatex">\(x, y \in X\)</span> are called equivalent (<span class="arithmatex">\(x \sim y\)</span>) iff <span class="arithmatex">\(f(x) = f(y) = \alpha\)</span> and <span class="arithmatex">\(x, y\)</span> are in the same path-connected component of <span class="arithmatex">\(f^{-1}(\alpha)\)</span>. The Reeb graph <span class="arithmatex">\(R_f\)</span> is the quotient space <span class="arithmatex">\(X / \sim\)</span>.</p>
+</div>
+<p>To exclude the weird and meaningless cases, we only consider the situations where there are always connected components and homology groups of levelsets only change at finitely many critical values.</p>
+<p>Reeb graph by definition is a topological space (it's a quotient space), we call it a graph because it's 1-dimensional. To get a real graph we need a discretization.</p>
+<p>It's very natural to consider the number of "neighbours" that a point has. Let <span class="arithmatex">\(u\)</span> be the number of neighbours in the direction of <span class="arithmatex">\(f\)</span>-value increases; <span class="arithmatex">\(l\)</span> be the number of neighbours in the direction of decreasing. Then if <span class="arithmatex">\(u = l = 1\)</span>, this point is a regular one; while in the other cases it's a critical point which should be displaced as a distinct vertex in the graph.</p>
+<h3 id="from-topospace-to-mathbbr">From Topospace to <span class="arithmatex">\(\mathbb{R}\)</span><a class="headerlink" href="#from-topospace-to-mathbbr" title="Permanent link">&para;</a></h3>
+<p>Mapper is an approximation of Reeb graph. Instead of preimage of single point, we now consider preimage of intervals.</p>
+<p>Again we need a function <span class="arithmatex">\(f: X \rightarrow \mathbb{R}\)</span>, and for an open cover <span class="arithmatex">\(\{U_\alpha\}\)</span> of <span class="arithmatex">\(\mathbb{R}\)</span>, we consider the path-connected components of preimages of each interval <span class="arithmatex">\(U_\alpha\)</span> and further compute the nerve of this family, i.e. <span class="arithmatex">\(f^{-1}(U_\alpha) = \bigcup_{\beta} V_\beta\)</span>, let <span class="arithmatex">\(f^*(U) = \{V_\beta\}\)</span>, and finally <span class="arithmatex">\(N(f^*(U))\)</span>.</p>
+<p>If we take sufficiently appropriate function <span class="arithmatex">\(f\)</span> and sufficiently appropriate cover <span class="arithmatex">\(\{U\}\)</span> then <span class="arithmatex">\(N(f^*(U))\)</span> is isomorphic to <span class="arithmatex">\(R_f\)</span>.</p>
+<h3 id="topological-mapper">Topological Mapper<a class="headerlink" href="#topological-mapper" title="Permanent link">&para;</a></h3>
+<p>Previous definition only considers maps to <span class="arithmatex">\(\mathbb{R}\)</span>, now we generalize to arbitary space.</p>
+<div class="admonition note">
+<p class="admonition-title">Def: well-behaved</p>
+<p>TBD</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Def: Mapper</p>
+<p>Let <span class="arithmatex">\(f: X \rightarrow Z\)</span> be well-behaved, and <span class="arithmatex">\(U\)</span> be a finite open cover of <span class="arithmatex">\(Z\)</span>. Then the Mapper is defined as <span class="arithmatex">\(M(U,f) = N(f^*(U))\)</span>.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="__comments">Comments</h2>
+<script src="https://giscus.app/client.js"
+      data-repo="27rabbitlt/27rabbitlt.github.io"
+      data-repo-id="R_kgDOIUbPmg"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOIUbPms4CSV-C"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="dark_dimmed"
+      data-lang="en"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async>
+</script>
+<!-- Synchronize Giscus theme with palette -->
+<script>
+  var giscus = document.querySelector("script[src*=giscus]")
+
+  /* Set palette on initial load */
+  var palette = __md_get("__palette")
+  if (palette && typeof palette.color === "object") {
+    var theme = palette.color.scheme === "slate" ? "dark" : "light"
+    giscus.setAttribute("data-theme", theme) 
+  }
+
+  /* Register event handlers after documented loaded */
+  document.addEventListener("DOMContentLoaded", function() {
+    var ref = document.querySelector("[data-md-component=palette]")
+    ref.addEventListener("change", function() {
+      var palette = __md_get("__palette")
+      if (palette && typeof palette.color === "object") {
+        var theme = palette.color.scheme === "slate" ? "dark" : "light"
+
+        /* Instruct Giscus to change theme */
+        var frame = document.querySelector(".giscus-frame")
+        frame.contentWindow.postMessage(
+          { giscus: { setConfig: { theme } } },
+          "https://giscus.app"
+        )
+      }
+    })
+  })
+</script>
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs"], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../../from_oi_wiki/js/extra.js?v=16"></script>
+      
+        <script src="../../../js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
