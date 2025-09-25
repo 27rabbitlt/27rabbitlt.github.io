@@ -131,6 +131,9 @@ nav:
   - refcount: posts/numexpr/refcount.md
 - pciedriver:
   - init: posts/pciedriver/init.md
+- formal-language:
+  - chap1: posts/formal-language/chap1.md
+  - chap2: posts/formal-language/chap2.md
 plugins:
 - search
 repo_name: 27rabbitlt pages
