@@ -110,6 +110,7 @@ nav:
   - Complex_Analysis: posts/MATH/Complex_Analysis.md
   - ODE:
     - eigenvalue: posts/MATH/ODE/eigenvalue.md
+  - ODS: posts/MATH/ODS.md
 - MISC:
   - working_setting: posts/MISC/working_setting.md
   - latex_tips: posts/MISC/latex_tips.md
@@ -134,6 +135,7 @@ nav:
 - formal-language:
   - chap1: posts/formal-language/chap1.md
   - chap2: posts/formal-language/chap2.md
+  - chap3: posts/formal-language/chap3.pdf
 plugins:
 - search
 repo_name: 27rabbitlt pages
